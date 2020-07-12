@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="javascript">
+
 <script src='https://d3js.org/d3.v5.min.js'></script>
+<html lang="en">
 <body>
 <h1>Hello World</h1>
 <p>I'm hosted with GitHub Pages.</p>
 <svg class="chart" width="120" height="500">
 </svg>
 <script>
-    d3.selectAll("rect").data([4,8,15,16,23,42,84]).enter().append("rect").attr("height",function(d) { return 10*d;})
-    .attr("width",19)
+    d3.select(".chart").selectAll("rect").data([4,8,15,16,23,42,84]).enter().append("rect").attr("height",function(d,i) { return 10*d;})
+    .attr("width",19);
 </script>
 </body>
 </html>
