@@ -9,7 +9,7 @@
 </svg>
 <script>
     d3.select(".chart").selectAll("rect").data([4,8,15,16,23,42,84]).enter().append("rect").attr("height",function(d,i) { return 10*d;})
-    .attr("width",19);
+    .attr("width",19).attr("x",function(d,i) { return 20*i; })
 </script>
 </body>
 </html>
