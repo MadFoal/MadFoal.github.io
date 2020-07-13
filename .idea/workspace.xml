@@ -16,12 +16,16 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ebc3818-f160-489e-8ceb-6726723ae423" name="Default Changelist" comment="test1">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="3ebc3818-f160-489e-8ceb-6726723ae423" name="Default Changelist" comment="test1" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,6 +52,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/MadFoal.github.io/index.html" useBuiltInWebServerPort="true">
@@ -69,7 +74,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1594578751952</updated>
-      <workItem from="1594578755847" duration="2322000" />
+      <workItem from="1594578755847" duration="2674000" />
     </task>
     <task id="LOCAL-00001" summary="test1">
       <created>1594579239963</created>
@@ -99,7 +104,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594606165761</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="test1">
+      <created>1594606347587</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1594606347587</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -110,7 +122,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -125,14 +149,30 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1165" y="562" width="876" height="502" key="#Notifications/0.0.2560.1400@0.0.2560.1400" timestamp="1594606326969" />
-    <state x="872" y="432" key="Vcs.Push.Dialog.v2" timestamp="1594606167748">
+    <state x="92" y="92" width="2376" height="1216" key="DiffContextDialog" timestamp="1594606692422">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="872" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1594606167748" />
+    <state x="92" y="92" width="2376" height="1216" key="DiffContextDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1594606692422" />
+    <state x="1104" y="601" key="Github.CreateGistDialog" timestamp="1594606686471">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1104" y="601" key="Github.CreateGistDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1594606686471" />
+    <state x="781" y="344" key="SettingsEditor" timestamp="1594606393414">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="781" y="344" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1594606393414" />
+    <state x="872" y="432" key="Vcs.Push.Dialog.v2" timestamp="1594606638395">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="872" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1594606638395" />
     <state x="1089" y="613" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1594606310870">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1089" y="613" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1594606310870" />
+    <state x="1067" y="601" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1594606618308">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1067" y="601" key="git4idea.remote.GitConfigureRemotesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1594606618308" />
     <state x="1583" y="332" width="672" height="678" key="search.everywhere.popup" timestamp="1594580147927">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
