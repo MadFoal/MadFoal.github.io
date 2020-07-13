@@ -20,25 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ebc3818-f160-489e-8ceb-6726723ae423" name="Default Changelist" comment="test1">
-      <change afterPath="$PROJECT_DIR$/.idea/MadFoal.github.io.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/MICHIGAN_POP.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/OHIO_POP.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/POP.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/POP_COUNTY.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/POP_STATE.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/POP_US.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/USA_COUNTIES.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/USA_COUNTIES.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/us-counties - Copy.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/us-counties.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/us-states.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/us.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,8 +36,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -85,7 +69,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1594578751952</updated>
-      <workItem from="1594578755847" duration="2111000" />
+      <workItem from="1594578755847" duration="2322000" />
     </task>
     <task id="LOCAL-00001" summary="test1">
       <created>1594579239963</created>
@@ -108,7 +92,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594580085405</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="test1">
+      <created>1594606165761</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1594606165761</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,10 +121,18 @@
     <option name="LAST_COMMIT_MESSAGE" value="test1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1089" y="613" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1594606035201">
+    <state x="1165" y="562" width="876" height="502" key="#Notifications" timestamp="1594606326969">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1089" y="613" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1594606035201" />
+    <state x="1165" y="562" width="876" height="502" key="#Notifications/0.0.2560.1400@0.0.2560.1400" timestamp="1594606326969" />
+    <state x="872" y="432" key="Vcs.Push.Dialog.v2" timestamp="1594606167748">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="872" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1594606167748" />
+    <state x="1089" y="613" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1594606310870">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1089" y="613" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1594606310870" />
     <state x="1583" y="332" width="672" height="678" key="search.everywhere.popup" timestamp="1594580147927">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
