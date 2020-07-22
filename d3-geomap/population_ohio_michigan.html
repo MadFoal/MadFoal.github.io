@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<script src='https://d3js.org/d3.v5.min.js'></script>
+<html lang="en">
+<body>
+<h1>Hello World</h1>
+<p>I'm hosted with GitHub Pages.</p>
+<svg class="chart" width="120" height="500">
+</svg>
+<script>
+    pop_mi = 9986857;
+    pop_oh = 11689100;
+    data = [9.986857,11.689100];
+    d3.select(".chart").selectAll("rect").data(data).enter().append("rect").attr("height",function(d,i) { return d*25;})
+        .attr("width",19).attr("x",function(d,i) { return 20*i; }).attr("y",function(d,i) { return 500-(25*d);})
+
+</script>
+</body>
+</html>

@@ -107,7 +107,7 @@
         stroke: black;
     }
     .botrect {
-    //fill: transparent;
+        //fill: transparent;
         fill-opacity: 0.2;
         stroke-opacity: 0.5;
         stroke: black;
@@ -469,24 +469,24 @@
         //var end = n;//122;
         //var xScale = d3.scaleLinear()
         //    .domain([start, end]) // input
-        //   .range([0, width]); // output
+         //   .range([0, width]); // output
         //var yScale = d3.scaleLinear()
         //    .domain([yscale_bot, yscale]) // input
-        ///   .range([height, 0]); // output
+         ///   .range([height, 0]); // output
         //var dataset = d3.range(end).map(function(d,i) { return {"y": (oh_cases[i]) } })
         //var dataset2 = d3.range(end).map(function(d,i) { return {"y": (mi_cases[i]) } })
         //var ohline = d3.line()
         //    //.x(function(d, i) { return xScale(i); } )//oh_dates[i]; })//xScale(i); }) // set the x values for the line generator
         //    .x(function(d, i) { return xScale(i); })
         //    .y(function(d,i) { return yScale(oh_cases[i]); }) // set the y values for the line generator
-        //     .curve(d3.curveMonotoneX) // apply smoothing to the line
+       //     .curve(d3.curveMonotoneX) // apply smoothing to the line
         //var miline = d3.line()
-        //   .x(function(d, i) { return xScale(i); })
-        //   .y(function(d,i) { return yScale(mi_cases[i]); }) // set the y values for the line generator
+         //   .x(function(d, i) { return xScale(i); })
+         //   .y(function(d,i) { return yScale(mi_cases[i]); }) // set the y values for the line generator
         //var ohdot = d3.circle()
-        //   .attr("cx", function(d, i) { return xScale(oh_KE_numdates[i])})//xScale(i) })
-        //   .attr("cy", function(d) { return yScale(d)}) //yScale(d.y) })
-        //   .attr("r", 5);
+         //   .attr("cx", function(d, i) { return xScale(oh_KE_numdates[i])})//xScale(i) })
+         //   .attr("cy", function(d) { return yScale(d)}) //yScale(d.y) })
+         //   .attr("r", 5);
         var ohtScale = d3.scaleTime()
             .domain([min_date,max_date])//d3.extent(oh_dates, function(d) { return new Date(oh_dates);}))
             .range([0, width]);
@@ -574,11 +574,11 @@
             svg.selectAll(".midot3").duration(duration).attr("cx", function(d, i) { return xAxis(mi_KE_numdates3[i])})//xScale(i) })
                 .attr("cy", function(d) { return yScale(d)});
         }
-        // .attr("r", 5);
+           // .attr("r", 5);
         //Axis_bottom_x = d3.axisBottom(xScale);//ohtScale);
         //Axis_bottom_x.tickSize(10);
 
-        //Axis_bottom_x = d3.axisBottom(xScale);//ohtScale);
+            //Axis_bottom_x = d3.axisBottom(xScale);//ohtScale);
 
 
         //Axis_bottom_x.tickSize(10)
@@ -728,13 +728,13 @@
 
     }
     //    var xPosition = d3.mouse(this)[0] + 10;
-    //   var yPosition = d3.mouse(this)[1] - 5;
-    //   Tooltip
-    //       .html(oh_KE[i])
-    //       //.style("left", (d3.mouse(this)[0]+70) + "px")
-    //       //.style("top", (d3.mouse(this)[1]) + "px")
-    //       .style("display","inline")
-    //       attr("transform", "translate(" + xPosition + "," + yPosition + ")");
+     //   var yPosition = d3.mouse(this)[1] - 5;
+     //   Tooltip
+     //       .html(oh_KE[i])
+     //       //.style("left", (d3.mouse(this)[0]+70) + "px")
+     //       //.style("top", (d3.mouse(this)[1]) + "px")
+     //       .style("display","inline")
+     //       attr("transform", "translate(" + xPosition + "," + yPosition + ")");
     //}
     var mouseleave = function(d,i) {
         Tooltip
@@ -848,7 +848,7 @@
 
     var ohtScale = d3.scaleTime()
         .domain([min_date,max_date])//d3.extent(oh_dates, function(d) { return new Date(oh_dates);}))
-        .range([0, width]);
+       .range([0, width]);
     //var yScaleTimeline
 
     var yScale = d3.scaleLinear()
@@ -887,13 +887,13 @@
         .attr('style', 'position: absolute; opacity: 0; border: solid;border-width: 2px; border-radius: 5px; padding:5px;background-color: white')
         .attr("stroke","black")
         .attr("stroke-width", "4px")
-    //.attr("style","font: 16px sanserif")
-    //.attr("class", "tooltip")
-    //.style("background-color", "white")
-    //.style("border", "solid")
-    //.style("border-width", "2px")
-    //.style("border-radius", "5px")
-    //.style("padding", "5px")
+        //.attr("style","font: 16px sanserif")
+        //.attr("class", "tooltip")
+        //.style("background-color", "white")
+        //.style("border", "solid")
+        //.style("border-width", "2px")
+        //.style("border-radius", "5px")
+        //.style("padding", "5px")
     //-----------------SVG----------------
     //Begin drawing our diagram
     var svg = d3.select("body").append("svg")
@@ -935,8 +935,8 @@
     svg.append("g")
         .attr("class", "yaxis")
         .call(d3.axisLeft(yScale).tickFormat(function (d) {
-            if ((d / 1000) >= 1) { d = d / 1000 + "K"; }
-            return d; })).selectAll('text')
+                if ((d / 1000) >= 1) { d = d / 1000 + "K"; }
+                return d; })).selectAll('text')
         .attr("y", -15)
         .attr("x", 0)
         .attr("dy", ".35em")
@@ -982,12 +982,12 @@
         .on("mouseover", oh_mouseover1)
         .on("mousemove", mousemove)
         .on("mouseleave", mouseleave);
-    //.on("mouseover", function(d, i) {
-    //    console.log(oh_KE1[i]);
-    //    //this.attr('class', 'focus')
-    //    Tooltip.html(oh_KE1[i]).style("opacity", 1);
-    //})
-    //.on("mouseout", function() {  })
+        //.on("mouseover", function(d, i) {
+        //    console.log(oh_KE1[i]);
+        //    //this.attr('class', 'focus')
+        //    Tooltip.html(oh_KE1[i]).style("opacity", 1);
+        //})
+        //.on("mouseout", function() {  })
     var ohDot = svg.selectAll(".dot")
         .data(oh_KE_oh_cases2)//dataset)//dataset)
         .enter().append("circle") // Uses the enter().append() method
@@ -1207,37 +1207,37 @@
     //    max_date = new Date(2020,max_date_month,max_date_day);
 
     //var margin = {top: 50, right: 50, bottom: 50, left: 100}
-    //   , width = graph_width - margin.left - margin.right //window.innerWidth - margin.left - margin.right // Use the window's width
-    //  , height = graph_height;//window.innerHeight - margin.top - margin.bottom; // Use the window's height
+     //   , width = graph_width - margin.left - margin.right //window.innerWidth - margin.left - margin.right // Use the window's width
+      //  , height = graph_height;//window.innerHeight - margin.top - margin.bottom; // Use the window's height
 
     //var tsvg = d3.select("body").select("svg")//.select("svg").attr("class","svg2")
-    //.attr("width", timeline_svg_width+margin.left+margin.right)
-    //.attr("height", timeline_svg_height+margin.top+margin.bottom)
+        //.attr("width", timeline_svg_width+margin.left+margin.right)
+        //.attr("height", timeline_svg_height+margin.top+margin.bottom)
     svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top+margin.bottom +height + ")");
     svg.append("rect")
-        .attr("class","botrect")
-        .attr("x",0)
-        .attr("y",margin.top+margin.bottom +height)
-        .attr("width",timeline_svg_width)
-        .attr("height",timeline_svg_height)
-    //.append("rect")
-    //.attr("class","botrect")
-    //.attr("x",0)
-    //.attr("y",0)
-    //.attr("width",timeline_svg_width/2)
-    //.attr("height",timeline_svg_height/2)
-    //.append("g")
-    //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-    //.append("g")
-    //.attr("class","brush")
-    //.call(xBrush);
+    .attr("class","botrect")
+    .attr("x",0)
+    .attr("y",margin.top+margin.bottom +height)
+    .attr("width",timeline_svg_width)
+    .attr("height",timeline_svg_height)
+        //.append("rect")
+        //.attr("class","botrect")
+        //.attr("x",0)
+        //.attr("y",0)
+        //.attr("width",timeline_svg_width/2)
+        //.attr("height",timeline_svg_height/2)
+        //.append("g")
+        //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        //.append("g")
+        //.attr("class","brush")
+        //.call(xBrush);
 
 
 
     var tohtScale = d3.scaleTime()
-        .domain([min_date,max_date])//d3.extent(oh_dates, function(d) { return new Date(oh_dates);}))
-        .range([0, timeline_svg_width]);
+       .domain([min_date,max_date])//d3.extent(oh_dates, function(d) { return new Date(oh_dates);}))
+       .range([0, timeline_svg_width]);
     ltAxis_generator = d3.axisLeft(timelineYScale);
     tAxis_generator = d3.axisBottom(xScale);
     tsAxis_generator = d3.axisBottom(tohtScale);
@@ -1303,7 +1303,7 @@
         .on("mousemove", mousemove)
         .on("mouseleave", mouseleave);
 
-    //.tickArguments([1]);
+        //.tickArguments([1]);
     //.tickFormat(d3.timeFormat("%mm-%dd-%YYYY"))
     //.ticks(122);
     //tsvg.call(d3.brushX()).on("start end", updateChart).move([[0,0],[100,100]]);
@@ -1316,22 +1316,22 @@
 
     //tsvg.append("g").call(xBrush);
     //tAxis.call(xBrush)
-    //.call(xBrush.move, [0, 100]);
+        //.call(xBrush.move, [0, 100]);
     //function brushed() {
     //    const selection = d3.event.selection;
-    //   if (selection==null) {
-    //       const [mx] = d3.mouse(this);
-    //       d3.select(this).call(brush.move, [mx,mx]);
-    //       return;
-    //   }
-    //   const sx = selection.map(x.invert);
-    //   circle.attr("stroke", d=> sx[0] <= d && d <= sx[1] ? "red" : null);
-    //   d3.select(this).call(brushHandle,selection);
+     //   if (selection==null) {
+     //       const [mx] = d3.mouse(this);
+     //       d3.select(this).call(brush.move, [mx,mx]);
+     //       return;
+     //   }
+     //   const sx = selection.map(x.invert);
+     //   circle.attr("stroke", d=> sx[0] <= d && d <= sx[1] ? "red" : null);
+     //   d3.select(this).call(brushHandle,selection);
     //}
 
 
 </script>
 
 <script>
-    // 1 JUN Michigan Opens state PHASE 4 with business opening - 7 days later their have their largest increase yet
+// 1 JUN Michigan Opens state PHASE 4 with business opening - 7 days later their have their largest increase yet
 </script>

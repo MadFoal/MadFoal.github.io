@@ -2,6 +2,9 @@
 <meta charset="utf-8">
 
 <style type="text/css">
+    /* 13. Basic Styling with CSS */
+
+    /* Style the lines by removing the fill and applying a stroke */
     .line {
         fill: none;
         stroke: #ffab00;
@@ -17,10 +20,14 @@
         stroke: #CE0F3D;
         stroke-width: 3;
     }
+
+
     .overlay {
         fill: none;
         pointer-events: all;
     }
+
+    /* Style the dots by assigning a fill and stroke */
     .dot {
         fill: #ffab00;
         stroke: #fff;
@@ -72,18 +79,13 @@
         stroke: steelblue;
     }
     .baxis {
-        font: 14px sans-serif;
+        font: 20px sans-serif;
         text-anchor:start;
-        stroke:black;
 
     }
     .blaxis {
-        font: 18px sans-serif;
-        text-anchor: middle;
-        stroke:black;
-    }
-    .test {
-        writing-mode: vertical-lr;
+        font: 20px sans-serif;
+        writing-mode: vertical-rl;
         text-anchor: middle;
 
     }
@@ -91,23 +93,17 @@
         font: 12px sans-serif;
 
     }
-    .yaxis_label {
-        font: 32px sans-serif;
-
-        stroke:black;
-    }
-
     .xaxis {
-        font: 32px sans-serif;
+        font: 20px sans-serif;
         stroke: black;
 
     }
     .yaxis {
-        font: 32px sans-serif;
+        font: 20px sans-serif;
         stroke: black;
     }
     .botrect {
-    //fill: transparent;
+        //fill: transparent;
         fill-opacity: 0.2;
         stroke-opacity: 0.5;
         stroke: black;
@@ -133,71 +129,27 @@
         background-color: #4CAF50; /* Green */
 
     }
-    .overall_annotation_box1 {
-        font: 14px sans-serif;
-        stroke:black;
-    }
-    .overall_annotation_line1 {
-        stroke:black;
-    }
-    .overall_annotation_box2 {
-        font: 14px sans-serif;
-        stroke:black;
-    }
-    .overall_annotation_line2 {
-        stroke:black;
-    }
-
-    .scene1_annotation_box1 {
-        font: 14px sans-serif;
-        stroke:black;
-    }
-    .scene1_annotation_line1 {
-        stroke:black;
-    }
-    .scene1_annotation_box2 {
-        font: 14px sans-serif;
-        stroke:black;
-    }
-    .scene1_annotation_line2 {
-        stroke:black;
-    }
-    .scene2_annotation_box1 {
-        font: 14px sans-serif;
-        stroke:black;
-    }
-    .scene2_annotation_line1 {
-        stroke:black;
     }
 
 </style>
+<!-- Body tag is where we will append our SVG and SVG objects-->
 
 
-
-<p style="font: 32px sans-serif" align="center" >
-    <u>A tale of two states - COVID-19 Ohio/Michigan Comparison</u>
-</p>
-<p style="font: 32px sans-serif" align="left">
-    <BR><BR>Executive Summary: In the first half of 2020, two states, roughly equal in size and population, were caught off guard by COVID-19. Both had population centers impacted, although Michigan's Detroit had a more aggressive initial spread.With National Support, Michigan was able to provide free test sites, compensate its people and business, utilize the National Guard to assist the local Governments, and ultimately get control of the spread of the virus.On the other hand, Ohio had a smaller initial problem set and, like Michigan, took measures to ensure businesses were shut down but did not install as many controls as its neighbor. Ultimately, Ohio saw the contagion spread at an alarming rate with no sign of stopping. The State, following the Federal Government's guidance, is looking at ways to move forward by opening schools and businesses without taking safety precautions.
-    <BR><BR>Our story is told in four parts.  The first view shows the overall number of cases over time for each State.  Each subsequent picture, labeled "Phase 1," "Phase 2," and "Phase 3," marks a distinct period and policy for each State.The indicator bubbles provide additional details to help demonstrate each State's mitigation procedures, and the line chart shows its relative effectiveness.
-    <BR><BR>
-    <BR><BR>
+<p>
+    Title: A tale of two states - COVID-19 Ohio Michigan Comparison
+    <BR>Executive Summary: In the first half 2020 two states, roughly equal in land mass and population had the same initial problem set, both had cases of COVID-19 and were not prepared to properly mitigate it's affects.  These are three scenes are  
     <BR>
-</p>
-<p style="font: 32px sans-serif" align="center">
     <button class="button" type="button" onclick="changeScene(1)">Phase 1</button>
     <button class="button" type="button" onclick="changeScene(2)">Phase 2</button>
     <button class="button" type="button" onclick="changeScene(3)">Phase 3</button>
     <button class="button" type="button" onclick="changeScene(4)">Overview</button>
 </p>
 
-<body align = "center">
+<body>
 </body>
 <!-- Load in the d3 library -->
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script>
-    d3.annotation()
-
 
     //returns a date give a starting date and count, the number of days past the starting date
     function newDate(month, day, count) {
@@ -237,17 +189,6 @@
     function changeScene(i){
         start = 0
         var start = 0;
-        var svg = d3.select("body");
-        svg.selectAll(".overall_annotation_box1").style("opacity",0);
-        svg.selectAll(".overall_annotation_line1").style("opacity",0);
-        svg.selectAll(".overall_annotation_box2").style("opacity",0);
-        svg.selectAll(".overall_annotation_line2").style("opacity",0);
-        svg.selectAll(".scene1_annotation_box1").style("opacity",0);
-        svg.selectAll(".scene1_annotation_line1").style("opacity",0);
-        svg.selectAll(".scene1_annotation_box2").style("opacity",0);
-        svg.selectAll(".scene1_annotation_line2").style("opacity",0);
-        svg.selectAll(".scene2_annotation_box1").style("opacity",0);
-        svg.selectAll(".scene2_annotation_line1").style("opacity",0);
         //var temp_min = newDate(min_date_month,min_date_day,start);
         //var temp_max = newDate(min_date_month,min_date_day,end);//newDate(max_date_month,max_date_day,end);
         //var min_date_month = temp_min.m;
@@ -265,10 +206,9 @@
 
             console.log("click one");
             n=23;
-            start=0;
             //var start = 0;
             var oh_cases_sc1 = [3,3,4,5,13,26,37,50,67,90,120,169,247,351,444,564,707,867,1144,1406,1665,1933,2199,2548];
-            var mi_cases_sc1 = [2,2,12,25,33,53,54,65,80,334,548,787,1033,1324,1791,2293,2877,3655,4634,5486,6508,7629,9292,10791];
+            var mi_cases_sc1 = [2,2,12,25,33,53,54,65,80,334,548,787,1033,1324,1791,2293,2877,3655,4634,5486,6508,7629,9292];
             oh_KE_numdates=[0,1,4,5,6,9,13,21,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23];
             var mi_KE_numdates1 = [1,2,3,4,7,10,14,17,19,23];
             var mi_KE_mi_cases1 = [2,12,25,33,65,548,1791,3655,5486,10791];
@@ -469,28 +409,28 @@
         //var end = n;//122;
         //var xScale = d3.scaleLinear()
         //    .domain([start, end]) // input
-        //   .range([0, width]); // output
+         //   .range([0, width]); // output
         //var yScale = d3.scaleLinear()
         //    .domain([yscale_bot, yscale]) // input
-        ///   .range([height, 0]); // output
+         ///   .range([height, 0]); // output
         //var dataset = d3.range(end).map(function(d,i) { return {"y": (oh_cases[i]) } })
         //var dataset2 = d3.range(end).map(function(d,i) { return {"y": (mi_cases[i]) } })
         //var ohline = d3.line()
         //    //.x(function(d, i) { return xScale(i); } )//oh_dates[i]; })//xScale(i); }) // set the x values for the line generator
         //    .x(function(d, i) { return xScale(i); })
         //    .y(function(d,i) { return yScale(oh_cases[i]); }) // set the y values for the line generator
-        //     .curve(d3.curveMonotoneX) // apply smoothing to the line
+       //     .curve(d3.curveMonotoneX) // apply smoothing to the line
         //var miline = d3.line()
-        //   .x(function(d, i) { return xScale(i); })
-        //   .y(function(d,i) { return yScale(mi_cases[i]); }) // set the y values for the line generator
+         //   .x(function(d, i) { return xScale(i); })
+         //   .y(function(d,i) { return yScale(mi_cases[i]); }) // set the y values for the line generator
         //var ohdot = d3.circle()
-        //   .attr("cx", function(d, i) { return xScale(oh_KE_numdates[i])})//xScale(i) })
-        //   .attr("cy", function(d) { return yScale(d)}) //yScale(d.y) })
-        //   .attr("r", 5);
+         //   .attr("cx", function(d, i) { return xScale(oh_KE_numdates[i])})//xScale(i) })
+         //   .attr("cy", function(d) { return yScale(d)}) //yScale(d.y) })
+         //   .attr("r", 5);
         var ohtScale = d3.scaleTime()
             .domain([min_date,max_date])//d3.extent(oh_dates, function(d) { return new Date(oh_dates);}))
             .range([0, width]);
-        var svg = d3.select("body").select("svg").transition()//.attr("transform", "translate(" + margin.left + "," + margin.top + ")")//.attr("transform","translate(0,0)");//" + margin.top);// + (margin.left) + "," + (margin.top) );
+        var svg = d3.select("body").select("svg").transition().attr("transform","translate(" + (margin.left) + "," + (margin.top) );
         //var tsvg = d3.selectAll(".botrec").transition().duration(750).attr("x",botrec_x).attr("width",botrec_width);
         //plotTopGraph();
         //var Axis_bottom_x(d3.axisBottom(xScale));
@@ -498,14 +438,8 @@
         svg.select(".ohline").duration(duration).attr("d",ohline);
         //svg.select(".ohline").duration(750).datum(dataset).attr("d",line);
         svg.select(".miline").duration(duration).attr("d",miline);
-        svg.select(".xaxis").duration(750).call(d3.axisBottom(ohtScale).ticks(6));//xAxis));
-        svg.select(".yaxis").duration(750).call(d3.axisLeft(yScale).tickFormat(function (d) {
-            if ((d / 1000) >= 1) { d = d / 1000 + "K"; }
-            return d; })).selectAll('text')
-            .attr("y", -15)
-            .attr("x", 0)
-            .attr("dy", ".35em")
-            .attr("transform","rotate(-90)");
+        svg.select(".xaxis").duration(750).call(d3.axisBottom(ohtScale));//xAxis));
+        svg.select(".yaxis").duration(750).call(d3.axisLeft(yScale));
 
         svg.select(".botrect").duration(duration).attr("x",botrec_x).attr("width",botrec_width);
         if (i==1){
@@ -521,10 +455,6 @@
                 .attr("cy", 0);
             svg.selectAll(".midot3").duration(duration).attr("cx", 0)
                 .attr("cy", 0);
-            svg.selectAll(".scene1_annotation_box1").style("opacity",1);
-            svg.selectAll(".scene1_annotation_line1").style("opacity",1);
-            svg.selectAll(".scene1_annotation_box2").style("opacity",1);
-            svg.selectAll(".scene1_annotation_line2").style("opacity",1);
         }
         else if (i==2) {
             svg.selectAll(".ohdot2").duration(duration).attr("cx", function(d, i) { return xAxis(oh_KE_numdates2[i])})//xScale(i) })
@@ -539,8 +469,6 @@
                 .attr("cy", 0);
             svg.selectAll(".midot3").duration(duration).attr("cx", 0)
                 .attr("cy", 0);
-            svg.selectAll(".scene2_annotation_box1").style("opacity",1);
-            svg.selectAll(".scene2_annotation_line1").style("opacity",1);
         }
         else if (i==3) {
             svg.selectAll(".ohdot3").duration(duration).attr("cx", function(d, i) { return xAxis(oh_KE_numdates3[i])})//xScale(i) })
@@ -557,10 +485,6 @@
                 .attr("cy", 0);
         }
         else if (i==4) {
-            svg.selectAll(".overall_annotation_box1").style("opacity",1);
-            svg.selectAll(".overall_annotation_line1").style("opacity",1);
-            svg.selectAll(".overall_annotation_box2").style("opacity",1);
-            svg.selectAll(".overall_annotation_line2").style("opacity",1);
             svg.selectAll(".ohdot1").duration(duration).attr("cx", function(d, i) { return xAxis(oh_KE_numdates1[i])})//xScale(i) })
                 .attr("cy", function(d) { return yScale(d)});
             svg.selectAll(".ohdot2").duration(duration).attr("cx", function(d, i) { return xAxis(oh_KE_numdates2[i])})//xScale(i) })
@@ -574,11 +498,11 @@
             svg.selectAll(".midot3").duration(duration).attr("cx", function(d, i) { return xAxis(mi_KE_numdates3[i])})//xScale(i) })
                 .attr("cy", function(d) { return yScale(d)});
         }
-        // .attr("r", 5);
+           // .attr("r", 5);
         //Axis_bottom_x = d3.axisBottom(xScale);//ohtScale);
         //Axis_bottom_x.tickSize(10);
 
-        //Axis_bottom_x = d3.axisBottom(xScale);//ohtScale);
+            //Axis_bottom_x = d3.axisBottom(xScale);//ohtScale);
 
 
         //Axis_bottom_x.tickSize(10)
@@ -604,11 +528,11 @@
             .style('top', (d3.event.pageY + 10) + 'px')
         d3.select('#tooltip').style('opacity',1).text(oh_KE_dates1[i] +" " + oh_KE1[i]).style("stroke","black")
             .style("stroke-width", "4px")
-            .style("font","24px sanserif");
+            .style("font","36px sanserif");
         d3.select(this)
             .style("stroke", "black")
             .style("opacity", 1)
-            .attr("r",20)
+            .attr("r",15)
             .attr("stroke-width","6")
     }
     var oh_mouseover2 = function(d,i) {
@@ -617,11 +541,11 @@
             .style('top', (d3.event.pageY + 10) + 'px')
         d3.select('#tooltip').style('opacity',1).text(oh_KE_dates2[i] +" " + oh_KE2[i]).style("stroke","black")
             .style("stroke-width", "4px")
-            .style("font","24px sanserif");
+            .style("font","36px sanserif");
         d3.select(this)
             .style("stroke", "black")
             .style("opacity", 1)
-            .attr("r",20)
+            .attr("r",15)
             .attr("stroke-width","6")
     }
     var oh_mouseover3 = function(d,i) {
@@ -630,11 +554,11 @@
             .style('top', (d3.event.pageY + 10) + 'px')
         d3.select('#tooltip').style('opacity',1).text(oh_KE_dates3[i] +" " + oh_KE3[i]).style("stroke","black")
             .style("stroke-width", "4px")
-            .style("font","24px sanserif");
+            .style("font","36px sanserif");
         d3.select(this)
             .style("stroke", "black")
             .style("opacity", 1)
-            .attr("r",20)
+            .attr("r",15)
             .attr("stroke-width","6")
     }
     var oh_mouseover4 = function(d,i) {
@@ -643,11 +567,11 @@
             .style('top', (d3.event.pageY + 10) + 'px')
         d3.select('#tooltip').style('opacity',1).text(oh_KE_dates[i] +" " + oh_KE[i]).style("stroke","black")
             .style("stroke-width", "4px")
-            .style("font","24px sanserif");
+            .style("font","36px sanserif");
         d3.select(this)
             .style("stroke", "black")
             .style("opacity", 1)
-            .attr("r",20)
+            .attr("r",15)
             .attr("stroke-width","6")
     }
     var mi_mouseover1 = function(d,i) {
@@ -656,11 +580,11 @@
             .style('top', (d3.event.pageY + 10) + 'px')
         d3.select('#tooltip').style('opacity',1).text(mi_KE_dates1[i] +" " + mi_KE1[i]).style("stroke","black")
             .style("stroke-width", "4px")
-            .style("font","24px sanserif");
+            .style("font","36px sanserif");
         d3.select(this)
             .style("stroke", "black")
             .style("opacity", 1)
-            .attr("r",20)
+            .attr("r",15)
             .attr("stroke-width","6")
     }
     var mi_mouseover2 = function(d,i) {
@@ -669,11 +593,11 @@
             .style('top', (d3.event.pageY + 10) + 'px')
         d3.select('#tooltip').style('opacity',1).text(mi_KE_dates2[i] +" " + mi_KE2[i]).style("stroke","black")
             .style("stroke-width", "4px")
-            .style("font","24px sanserif");
+            .style("font","36px sanserif");
         d3.select(this)
             .style("stroke", "black")
             .style("opacity", 1)
-            .attr("r",20)
+            .attr("r",15)
             .attr("stroke-width","6")
     }
     var mi_mouseover3 = function(d,i) {
@@ -682,11 +606,11 @@
             .style('top', (d3.event.pageY + 10) + 'px')
         d3.select('#tooltip').style('opacity',1).text(mi_KE_dates3[i] +" " + mi_KE3[i]).style("stroke","black")
             .style("stroke-width", "4px")
-            .style("font","24px sanserif");
+            .style("font","36px sanserif");
         d3.select(this)
             .style("stroke", "black")
             .style("opacity", 1)
-            .attr("r",20)
+            .attr("r",15)
             .attr("stroke-width","6")
     }
     var mi_mouseover3 = function(d,i) {
@@ -695,11 +619,11 @@
             .style('top', (d3.event.pageY + 10) + 'px')
         d3.select('#tooltip').style('opacity',1).text(mi_KE_dates3[i] +" " + mi_KE3[i]).style("stroke","black")
             .style("stroke-width", "4px")
-            .style("font","24px sanserif");
+            .style("font","36px sanserif");
         d3.select(this)
             .style("stroke", "black")
             .style("opacity", 1)
-            .attr("r",20)
+            .attr("r",15)
             .attr("stroke-width","6")
     }
     var mi_mouseover4 = function(d,i) {
@@ -708,11 +632,11 @@
             .style('top', (d3.event.pageY + 10) + 'px')
         d3.select('#tooltip').style('opacity',1).text(mi_KE_dates[i] +" " + mi_KE[i]).style("stroke","black")
             .style("stroke-width", "4px")
-            .style("font","24px sanserif");
+            .style("font","36px sanserif");
         d3.select(this)
             .style("stroke", "black")
             .style("opacity", 1)
-            .attr("r",20)
+            .attr("r",15)
             .attr("stroke-width","6")
     }
 
@@ -720,7 +644,7 @@
         d3.select(this)
             .style("stroke", "black")
             .style("opacity", 1)
-            .attr("r",20)
+            .attr("r",15)
             .attr("stroke-width","6")
         d3.select('#tooltip')
             .style('left', (d3.event.pageX + 10) + 'px')
@@ -728,22 +652,22 @@
 
     }
     //    var xPosition = d3.mouse(this)[0] + 10;
-    //   var yPosition = d3.mouse(this)[1] - 5;
-    //   Tooltip
-    //       .html(oh_KE[i])
-    //       //.style("left", (d3.mouse(this)[0]+70) + "px")
-    //       //.style("top", (d3.mouse(this)[1]) + "px")
-    //       .style("display","inline")
-    //       attr("transform", "translate(" + xPosition + "," + yPosition + ")");
+     //   var yPosition = d3.mouse(this)[1] - 5;
+     //   Tooltip
+     //       .html(oh_KE[i])
+     //       //.style("left", (d3.mouse(this)[0]+70) + "px")
+     //       //.style("top", (d3.mouse(this)[1]) + "px")
+     //       .style("display","inline")
+     //       attr("transform", "translate(" + xPosition + "," + yPosition + ")");
     //}
     var mouseleave = function(d,i) {
         Tooltip
             .style("opacity", 0)
         d3.select(this)
-            .style("stroke", "white")
-            .style("opacity", 1)
-            .attr("r",10)
-            .attr("stroke-width","1")
+            .style("stroke", "none")
+            .style("opacity", 0.8)
+            .attr("r",5)
+            .attr("stroke-width","4")
     }
     //---------------------FRAME VARIABLES----------------------
     graph_width = window.innerWidth/1.5;//700;
@@ -848,7 +772,7 @@
 
     var ohtScale = d3.scaleTime()
         .domain([min_date,max_date])//d3.extent(oh_dates, function(d) { return new Date(oh_dates);}))
-        .range([0, width]);
+       .range([0, width]);
     //var yScaleTimeline
 
     var yScale = d3.scaleLinear()
@@ -887,13 +811,13 @@
         .attr('style', 'position: absolute; opacity: 0; border: solid;border-width: 2px; border-radius: 5px; padding:5px;background-color: white')
         .attr("stroke","black")
         .attr("stroke-width", "4px")
-    //.attr("style","font: 16px sanserif")
-    //.attr("class", "tooltip")
-    //.style("background-color", "white")
-    //.style("border", "solid")
-    //.style("border-width", "2px")
-    //.style("border-radius", "5px")
-    //.style("padding", "5px")
+        //.attr("style","font: 16px sanserif")
+        //.attr("class", "tooltip")
+        //.style("background-color", "white")
+        //.style("border", "solid")
+        //.style("border-width", "2px")
+        //.style("border-radius", "5px")
+        //.style("padding", "5px")
     //-----------------SVG----------------
     //Begin drawing our diagram
     var svg = d3.select("body").append("svg")
@@ -913,16 +837,27 @@
 
     //working code
     Axis_bottom_x = d3.axisBottom(ohtScale);//xScale);//ohtScale);
-    Axis_bottom_x.ticks(5)
     Axis_bottom_x.tickSize(10)
     var xAxis_Main = svg.append("g")
         .attr("class", "xaxis")
-        .attr("transform", "translate(0," +height+")")//+ margin.left + "," + height + ")")
+        .attr("transform", "translate(0," + height + ")")
         //.call(d3.axisBottom(//xScale));
         .call(Axis_bottom_x); //xScale));
     //working code
 
+    //Labels for axis
+    //svg.append('text')
+     //   .attr('x', -(height / 2) - margin)
+     //   .attr('y', margin / 2.4)
+     //   .attr('transform', 'rotate(-90)')
+     //   .attr('text-anchor', 'middle')
+     //   .text('Love meter (%)')
 
+    //svg.append('text')
+    //    .attr('x', width / 2 + margin)
+     //   .attr('y', 40)
+     //   .attr('text-anchor', 'middle')
+     //   .text('Most loved programming languages in 2018')
 
 
 
@@ -934,29 +869,7 @@
     //add a left axis
     svg.append("g")
         .attr("class", "yaxis")
-        .call(d3.axisLeft(yScale).tickFormat(function (d) {
-            if ((d / 1000) >= 1) { d = d / 1000 + "K"; }
-            return d; })).selectAll('text')
-        .attr("y", -15)
-        .attr("x", 0)
-        .attr("dy", ".35em")
-        .attr("transform","rotate(-90)");
-    svg.append("text")
-        .attr("class","yaxis_label")
-        .attr("y", 0 - margin.left)
-        .attr("x",0 - (height / 2))
-        .attr("dy", "1em")
-        .attr('transform', 'rotate(-90)')
-        .attr('text-anchor', 'middle')
-        .text('Number of Cases Total');
-
-
-
-    //svg.append('text')
-    //    .attr('x', width / 2 + margin)
-    //   .attr('y', 40)
-    //   .attr('text-anchor', 'middle')
-    //   .text('Most loved programming languages in 2018')
+        .call(d3.axisLeft(yScale));
     //-----------------SVG LEFT AXIS----------------
     //******************************************************************************************************************
     //-----------------SVG PLOT DATA AND DOTS----------------
@@ -978,23 +891,23 @@
         .attr("class", "ohdot1") // Assign a class for styling
         .attr("cx", function(d, i) { return xScale(oh_KE_numdates1[i])})//xScale(i) })
         .attr("cy", function(d) { return yScale(d)}) //yScale(d.y) })
-        .attr("r", 10)
+        .attr("r", 5)
         .on("mouseover", oh_mouseover1)
         .on("mousemove", mousemove)
         .on("mouseleave", mouseleave);
-    //.on("mouseover", function(d, i) {
-    //    console.log(oh_KE1[i]);
-    //    //this.attr('class', 'focus')
-    //    Tooltip.html(oh_KE1[i]).style("opacity", 1);
-    //})
-    //.on("mouseout", function() {  })
+        //.on("mouseover", function(d, i) {
+        //    console.log(oh_KE1[i]);
+        //    //this.attr('class', 'focus')
+        //    Tooltip.html(oh_KE1[i]).style("opacity", 1);
+        //})
+        //.on("mouseout", function() {  })
     var ohDot = svg.selectAll(".dot")
         .data(oh_KE_oh_cases2)//dataset)//dataset)
         .enter().append("circle") // Uses the enter().append() method
         .attr("class", "ohdot2") // Assign a class for styling
         .attr("cx", function(d, i) { return xScale(oh_KE_numdates2[i])})//xScale(i) })
         .attr("cy", function(d) { return yScale(d)}) //yScale(d.y) })
-        .attr("r", 10)
+        .attr("r", 5)
         .on("mouseover", oh_mouseover2)
         .on("mouseout", mousemove)
         .on("mouseleave",mouseleave)
@@ -1004,7 +917,7 @@
         .attr("class", "ohdot3") // Assign a class for styling
         .attr("cx", function(d, i) { return xScale(oh_KE_numdates3[i])})//xScale(i) })
         .attr("cy", function(d) { return yScale(d)}) //yScale(d.y) })
-        .attr("r", 10)
+        .attr("r", 5)
         .on("mouseover", oh_mouseover3)
         .on("mousemove", mousemove)
         .on("mouseleave", mouseleave);
@@ -1015,7 +928,7 @@
         .attr("class", "midot1") // Assign a class for styling
         .attr("cx", function(d, i) { return xScale(mi_KE_numdates1[i]) })
         .attr("cy", function(d) { return yScale(d) })
-        .attr("r", 10)
+        .attr("r", 5)
         .on("mouseover", mi_mouseover1)
         .on("mousemove", mousemove)
         .on("mouseleave", mouseleave);
@@ -1025,7 +938,7 @@
         .attr("class", "midot2") // Assign a class for styling
         .attr("cx", function(d, i) { return xScale(mi_KE_numdates2[i]) })
         .attr("cy", function(d) { return yScale(d) })
-        .attr("r", 10)
+        .attr("r", 5)
         .on("mouseover", mi_mouseover2)
         .on("mousemove", mousemove)
         .on("mouseleave", mouseleave);
@@ -1035,132 +948,14 @@
         .attr("class", "midot3") // Assign a class for styling
         .attr("cx", function(d, i) { return xScale(mi_KE_numdates3[i]) })
         .attr("cy", function(d) { return yScale(d) })
-        .attr("r", 10)
+        .attr("r", 5)
         .on("mouseover", mi_mouseover3)
         .on("mousemove", mousemove)
         .on("mouseleave", mouseleave);
     //-----------------SVG----------------
-    //---------------------create annotations
-    var annotation1_width = width*(13.5/100);
-    var annotation1_height = height/5;
-    var text_box = "Michigan starts off\nwith significantly more\ncases than Ohio";
-    text = svg.append("text")
-        .attr("class", "overall_annotation_box1")
-        .attr("transform", "translate(0," +margin.top+")")//+ margin.left + "," + height + ")")
-        //.attr("x", annotation1_width)
-        .attr("y",annotation1_height-height/14)
-    text.append("tspan").attr("dx",30).attr("dy",30).attr("style","stroke:4px");
-    text.selectAll("tspan.text").data(d=> text_box.split("\n")).enter().append("tspan").text(d=>d).attr("x", annotation1_width+width*(4/100))
-        .attr("dx", 10)
-        .attr("dy", 22);
-    svg.append('line')
-        .attr("class", "overall_annotation_line1")
-        .style("stroke", "lightblue")
-        .style("stroke-width", 10)
-        .attr("x1", annotation1_width+width*(10/100))
-        .attr("y1", annotation1_height+height*(10/100))
-        .attr("x2", annotation1_width+width*(10/100))
-        .attr("y2", height*(70/100));
+    //---------------------CREATE SCENE BUTTONS----------------------
+    //svg.append("button").attr("type","button").attr("onclick","sceneChange(\'1\')")
 
-
-    var annotation_width = width*(72.2/100);
-    var annotation_height = height - height/15;
-    text_box = "Ohio Governor annouces\ncases going down\nand opens up business\nand parks";
-    text = svg.append("text")
-        .attr("class", "overall_annotation_box2")
-        .attr("transform", "translate(0," +margin.top+")")//+ margin.left + "," + height + ")")
-        //.attr("x", annotation1_width)
-        .attr("y",annotation_height-height/6)
-    text.append("tspan").attr("dx",30).attr("dy",30).attr("style","stroke:4px");
-    text.selectAll("tspan.text").data(d=> text_box.split("\n")).enter().append("tspan").text(d=>d).attr("x", annotation_width+width*(5/100))
-        .attr("dx", 10)
-        .attr("dy", 22);
-    svg.append('line')
-        .attr("class", "overall_annotation_line2")
-        .style("stroke", "#FE7474")
-        .style("stroke-width", 10)
-        .attr("x1", annotation_width+width*(10/100))
-        .attr("y1", annotation_height-height*(10/100))
-        .attr("x2", annotation_width+width*(10/100))
-        .attr("y2", height/2.2);
-    svg.selectAll(".overall_annotation_box1").style("opacity",0);
-    svg.selectAll(".overall_annotation_line1").style("opacity",0);
-    svg.selectAll(".overall_annotation_box2").style("opacity",0);
-    svg.selectAll(".overall_annotation_line2").style("opacity",0);
-
-    var annotation_width = width*(79.4/100);
-    var annotation_height = height/14;
-    var text_box = "Michigan Governor gets\nstate declared as\nmajor disaster area\nwhich helps the state\nin the long run\n with resources";
-    text = svg.append("text")
-        .attr("class", "scene1_annotation_box1")
-        .attr("transform", "translate(0," +margin.top+")")//+ margin.left + "," + height + ")")
-        //.attr("x", annotation1_width)
-        .attr("y",annotation_height-height*(15/100))
-
-    text.append("tspan").attr("dx",30).attr("dy",30).attr("style","stroke:4px");
-    text.selectAll("tspan.text")
-        .data(d=> text_box.split("\n")).enter().append("tspan").text(d=>d).attr("x", annotation_width-width*(1/100))
-        .attr("dx", 10)
-        .attr("dy", 22);
-    svg.append('line')
-        .attr("class", "scene1_annotation_line1")
-        .style("stroke", "lightblue")
-        .style("stroke-width", 10)
-        .attr("x1", annotation_width+width*(3.2/100))
-        .attr("y1", annotation_height+height/6)
-        .attr("x2", annotation_width+width*(3.2/100))
-        .attr("y2", annotation_height+height*(13/36));
-    svg.selectAll(".scene1_annotation_box1").style("opacity",0);
-    svg.selectAll(".scene1_annotation_line1").style("opacity",0);
-
-    var annotation_width = width*53.3/100;
-    var annotation_height = height/8;
-    var text_box = "Ohio Governor begins\nthe stay at home\norder early one\nday before Michigan";
-    text = svg.append("text")
-        .attr("class", "scene1_annotation_box2")
-        .attr("transform", "translate(0," +margin.top+")")//+ margin.left + "," + height + ")")
-        //.attr("x", annotation1_width)
-        .attr("y",annotation_height)
-
-    text.append("tspan").attr("dx",30).attr("dy",30).attr("style","stroke:4px");
-    text.selectAll("tspan.text")
-        .data(d=> text_box.split("\n")).enter().append("tspan").text(d=>d).attr("x", annotation_width-width*(1/100))
-        .attr("dx", 10)
-        .attr("dy", 22);
-    svg.append('line')
-        .attr("class", "scene1_annotation_line2")
-        .style("stroke", "#FE7474")
-        .style("stroke-width", 10)
-        .attr("x1", annotation_width+width*(3.2/100))
-        .attr("y1", annotation_height+height*(24/100))
-        .attr("x2", annotation_width+width*(3.2/100))
-        .attr("y2", annotation_height+height*(82/100));
-    svg.selectAll(".scene1_annotation_box2").style("opacity",0);
-    svg.selectAll(".scene1_annotation_line2").style("opacity",0);
-
-    var annotation_width = width*15.6/100;
-    var annotation_height = height/20;
-    var text_box = "Michigan begins drive\nthrough testing which\nhelps flatten their curve";
-    text = svg.append("text")
-        .attr("class", "scene2_annotation_box1")
-        .attr("transform", "translate(0," +margin.top+")")//+ margin.left + "," + height + ")")
-        //.attr("x", annotation1_width)
-        .attr("y",annotation_height)
-    text.append("tspan").attr("dx",30).attr("dy",30).attr("style","stroke:4px");
-    text.selectAll("tspan.text")
-        .data(d=> text_box.split("\n")).enter().append("tspan").text(d=>d).attr("x", annotation_width-width*(1/100))
-        .attr("dx", 10)
-        .attr("dy", 22);
-    svg.append('line')
-        .attr("class", "scene2_annotation_line1")
-        .style("stroke", "lightblue")
-        .style("stroke-width", 10)
-        .attr("x1", annotation_width+width*(3.2/100))
-        .attr("y1", annotation_height+height*(18/100))
-        .attr("x2", annotation_width+width*(3.2/100))
-        .attr("y2", annotation_height+height*(52/100));
-    svg.selectAll(".scene2_annotation_box1").style("opacity",0);
-    svg.selectAll(".scene2_annotation_line1").style("opacity",0);
     //-----------------SVG PLOT DATA AND DOTS----------------
     //******************************************************************************************************************
 
@@ -1207,37 +1002,38 @@
     //    max_date = new Date(2020,max_date_month,max_date_day);
 
     //var margin = {top: 50, right: 50, bottom: 50, left: 100}
-    //   , width = graph_width - margin.left - margin.right //window.innerWidth - margin.left - margin.right // Use the window's width
-    //  , height = graph_height;//window.innerHeight - margin.top - margin.bottom; // Use the window's height
+     //   , width = graph_width - margin.left - margin.right //window.innerWidth - margin.left - margin.right // Use the window's width
+      //  , height = graph_height;//window.innerHeight - margin.top - margin.bottom; // Use the window's height
 
     //var tsvg = d3.select("body").select("svg")//.select("svg").attr("class","svg2")
-    //.attr("width", timeline_svg_width+margin.left+margin.right)
-    //.attr("height", timeline_svg_height+margin.top+margin.bottom)
+        //.attr("width", timeline_svg_width+margin.left+margin.right)
+        //.attr("height", timeline_svg_height+margin.top+margin.bottom)
     svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top+margin.bottom +height + ")");
     svg.append("rect")
-        .attr("class","botrect")
-        .attr("x",0)
-        .attr("y",margin.top+margin.bottom +height)
-        .attr("width",timeline_svg_width)
-        .attr("height",timeline_svg_height)
-    //.append("rect")
-    //.attr("class","botrect")
-    //.attr("x",0)
-    //.attr("y",0)
-    //.attr("width",timeline_svg_width/2)
-    //.attr("height",timeline_svg_height/2)
-    //.append("g")
-    //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-    //.append("g")
-    //.attr("class","brush")
-    //.call(xBrush);
+    .attr("class","botrect")
+    .attr("x",0)
+    .attr("y",margin.top+margin.bottom +height)
+    .attr("width",timeline_svg_width)
+    .attr("height",timeline_svg_height)
+        //.append("rect")
+        //.attr("class","botrect")
+        //.attr("x",0)
+        //.attr("y",0)
+        //.attr("width",timeline_svg_width/2)
+        //.attr("height",timeline_svg_height/2)
+        //.append("g")
+        //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        //.append("g")
+        //.attr("class","brush")
+        //.call(xBrush);
 
+    //.append("g");
 
 
     var tohtScale = d3.scaleTime()
-        .domain([min_date,max_date])//d3.extent(oh_dates, function(d) { return new Date(oh_dates);}))
-        .range([0, timeline_svg_width]);
+       .domain([min_date,max_date])//d3.extent(oh_dates, function(d) { return new Date(oh_dates);}))
+       .range([0, timeline_svg_width]);
     ltAxis_generator = d3.axisLeft(timelineYScale);
     tAxis_generator = d3.axisBottom(xScale);
     tsAxis_generator = d3.axisBottom(tohtScale);
@@ -1248,7 +1044,7 @@
     tAxis_generator.tickSize(timeline_svg_height*-1);
     ltAxis_generator.ticks(2);
     ltAxis_generator.tickValues([25,75]);
-    let tickLLabel = ['Ohio','Michigan'];
+    let tickLLabel = ['Ohio Events','Michigan Events'];
     ltAxis_generator.tickFormat((d,i) => tickLLabel[i]);
     ltAxis_generator.tickSize(10);
 
@@ -1264,21 +1060,7 @@
     svg.append("g")
         .attr("class", "blaxis")
         .attr("transform", "translate(0," + (height + margin.top + margin.bottom) + ")")
-        .call(ltAxis_generator)
-        .selectAll('text')
-        .attr("y", -15)
-        .attr("x", 0)
-        .attr("dy", ".35em")
-        .attr("transform","rotate(-90)");
-
-    svg.append("text")
-        .attr("class","yaxis_label")
-        .attr("y", 0 - margin.left)
-        .attr("x", -1*height-timeline_svg_height/2-margin.bottom-margin.top)
-        .attr("dy", "1em")
-        .attr('transform', 'rotate(-90)')
-        .attr('text-anchor', 'middle')
-        .text('EVENTS');
+        .call(ltAxis_generator);
 
     svg.selectAll(".dot")
         .data(oh_KE_oh_cases)//dataset)//dataset)
@@ -1287,7 +1069,7 @@
         .attr("transform", "translate(0," + (height + margin.top + margin.bottom) + ")")
         .attr("cx", function(d, i) { return xScale(oh_KE_numdates[i])})//xScale(i) })
         .attr("cy", d3.randomUniform(timeline_svg_height*5/6,timeline_svg_height*4/6))//function(d) { return d3.randomUniform(d,00)})//timelineYScale(d)}) //yScale(d.y) })
-        .attr("r", 10)
+        .attr("r", 5)
         .on("mouseover", oh_mouseover4)
         .on("mousemove", mousemove)
         .on("mouseleave", mouseleave);
@@ -1298,12 +1080,12 @@
         .attr("transform", "translate(0," + (height + margin.top + margin.bottom) + ")")
         .attr("cx", function(d, i) { return xScale(mi_KE_numdates[i]) })
         .attr("cy", d3.randomUniform(timeline_svg_height*1/6,timeline_svg_height*2/6))//function(d) { return timelineYScale(d)-50 })
-        .attr("r", 10)
+        .attr("r", 5)
         .on("mouseover", mi_mouseover4)
         .on("mousemove", mousemove)
         .on("mouseleave", mouseleave);
 
-    //.tickArguments([1]);
+        //.tickArguments([1]);
     //.tickFormat(d3.timeFormat("%mm-%dd-%YYYY"))
     //.ticks(122);
     //tsvg.call(d3.brushX()).on("start end", updateChart).move([[0,0],[100,100]]);
@@ -1316,22 +1098,22 @@
 
     //tsvg.append("g").call(xBrush);
     //tAxis.call(xBrush)
-    //.call(xBrush.move, [0, 100]);
+        //.call(xBrush.move, [0, 100]);
     //function brushed() {
     //    const selection = d3.event.selection;
-    //   if (selection==null) {
-    //       const [mx] = d3.mouse(this);
-    //       d3.select(this).call(brush.move, [mx,mx]);
-    //       return;
-    //   }
-    //   const sx = selection.map(x.invert);
-    //   circle.attr("stroke", d=> sx[0] <= d && d <= sx[1] ? "red" : null);
-    //   d3.select(this).call(brushHandle,selection);
+     //   if (selection==null) {
+     //       const [mx] = d3.mouse(this);
+     //       d3.select(this).call(brush.move, [mx,mx]);
+     //       return;
+     //   }
+     //   const sx = selection.map(x.invert);
+     //   circle.attr("stroke", d=> sx[0] <= d && d <= sx[1] ? "red" : null);
+     //   d3.select(this).call(brushHandle,selection);
     //}
 
 
 </script>
 
 <script>
-    // 1 JUN Michigan Opens state PHASE 4 with business opening - 7 days later their have their largest increase yet
+// 1 JUN Michigan Opens state PHASE 4 with business opening - 7 days later their have their largest increase yet
 </script>

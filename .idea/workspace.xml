@@ -25,7 +25,16 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ebc3818-f160-489e-8ceb-6726723ae423" name="Default Changelist" comment="test1" />
+    <list default="true" id="3ebc3818-f160-489e-8ceb-6726723ae423" name="Default Changelist" comment="test1">
+      <change afterPath="$PROJECT_DIR$/d3-geomap/d3-geomap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/d3-geomap/line_plot.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/d3-geomap/line_plot2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/d3-geomap/population_ohio_michigan.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/map.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/MadFoal.github.io.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MadFoal.github.io.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,6 +42,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectId" id="1eb85uuYuaq1OLTVzVFsiHohJrp" />
   <component name="ProjectViewState">
@@ -45,7 +55,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/d3-geomap" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -53,6 +63,11 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Ben\Documents\GitHub\MadFoal.github.io\d3-geomap" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/MadFoal.github.io/index.html" useBuiltInWebServerPort="true">
@@ -74,7 +89,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1594578751952</updated>
-      <workItem from="1594578755847" duration="2674000" />
+      <workItem from="1594578755847" duration="5382000" />
+      <workItem from="1594772769552" duration="40507000" />
+      <workItem from="1595197689146" duration="44604000" />
     </task>
     <task id="LOCAL-00001" summary="test1">
       <created>1594579239963</created>
@@ -111,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594606347587</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="test1">
+      <created>1594606768343</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1594606768343</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,6 +163,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test1" />
@@ -149,6 +174,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1165" y="562" width="876" height="502" key="#Notifications/0.0.2560.1400@0.0.2560.1400" timestamp="1594606326969" />
+    <state x="1193" y="603" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1594689918281">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1193" y="603" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1594689918281" />
     <state x="92" y="92" width="2376" height="1216" key="DiffContextDialog" timestamp="1594606692422">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -161,21 +190,25 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="781" y="344" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1594606393414" />
-    <state x="872" y="432" key="Vcs.Push.Dialog.v2" timestamp="1594606638395">
+    <state x="872" y="432" key="Vcs.Push.Dialog.v2" timestamp="1594606788883">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="872" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1594606638395" />
-    <state x="1089" y="613" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1594606310870">
+    <state x="872" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1594606788883" />
+    <state x="1089" y="613" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595388492118">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1089" y="613" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1594606310870" />
+    <state x="1089" y="613" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1595388492118" />
     <state x="1067" y="601" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1594606618308">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1067" y="601" key="git4idea.remote.GitConfigureRemotesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1594606618308" />
-    <state x="1583" y="332" width="672" height="678" key="search.everywhere.popup" timestamp="1594580147927">
+    <state x="1576" y="334" key="run.anything.popup" timestamp="1594953781380">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1583" y="332" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1594580147927" />
+    <state x="1576" y="334" key="run.anything.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1594953781380" />
+    <state x="1583" y="332" width="672" height="678" key="search.everywhere.popup" timestamp="1595213866344">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1583" y="332" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1595213866344" />
   </component>
 </project>
