@@ -169,6 +169,27 @@
     .scene2_annotation_line1 {
         stroke:black;
     }
+    .scene2_annotation_box2 {
+        font: 14px sans-serif;
+        stroke:black;
+    }
+    .scene2_annotation_line2 {
+        stroke:black;
+    }
+    .scene3_annotation_box1 {
+        font: 14px sans-serif;
+        stroke:black;
+    }
+    .scene3_annotation_line1 {
+        stroke:black;
+    }
+    .scene3_annotation_box2 {
+        font: 14px sans-serif;
+        stroke:black;
+    }
+    .scene3_annotation_line2 {
+        stroke:black;
+    }
 
 </style>
 
@@ -193,7 +214,7 @@
 
 <body align = "center">
 </body>
-<!-- Load in the d3 library -->
+
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script>
     d3.annotation()
@@ -232,8 +253,10 @@
         }
         return { m: month, d: day};
     }
+    //created by ben kedo
 </script>
 <script>
+    //created by ben kedo
     function changeScene(i){
         start = 0
         var start = 0;
@@ -248,14 +271,16 @@
         svg.selectAll(".scene1_annotation_line2").style("opacity",0);
         svg.selectAll(".scene2_annotation_box1").style("opacity",0);
         svg.selectAll(".scene2_annotation_line1").style("opacity",0);
-        //var temp_min = newDate(min_date_month,min_date_day,start);
-        //var temp_max = newDate(min_date_month,min_date_day,end);//newDate(max_date_month,max_date_day,end);
-        //var min_date_month = temp_min.m;
-        //var min_date_day = temp_min.d;
+        svg.selectAll(".scene2_annotation_box2").style("opacity",0);
+        svg.selectAll(".scene2_annotation_line2").style("opacity",0);
+        svg.selectAll(".scene3_annotation_box1").style("opacity",0);
+        svg.selectAll(".scene3_annotation_line1").style("opacity",0);
+        svg.selectAll(".scene3_annotation_box2").style("opacity",0);
+        svg.selectAll(".scene3_annotation_line2").style("opacity",0);
+
         var min_date_month = 2;
         var min_date_day = 9;
-        //var max_date_month = temp_max.m;
-        //var max_date_day = temp_max.d;
+
         var n = 0;
         var duration = 750;
 
@@ -275,13 +300,12 @@
             yscale = 10000;
             botrec_x = 0;
             botrec_width = width*(39/200);
-            //var oh_KE_numdates_sc1 = [0,1,4,5,6,9,13,21,23,24,26,38,49,50,66,67,80,83,88,91,101,113,121];
-            //var oh_KE_count = 9;
+
             var oh_KE_numdates1 = [0,1,4,5,6,9,13,21,23];
             var oh_KE_oh_cases1 = [3,3,13,26,37,90,351,1933,2548];
 
             var temp_min = newDate(min_date_month,min_date_day,start);
-            var temp_max = newDate(min_date_month,min_date_day,n);//newDate(max_date_month,max_date_day,end);
+            var temp_max = newDate(min_date_month,min_date_day,n);
             var min_date_month = temp_min.m;
             var min_date_day = temp_min.d;
             var max_date_month = temp_max.m;
@@ -289,27 +313,26 @@
             var min_date = new Date(2020,min_date_month,min_date_day),
                 max_date = new Date(2020,max_date_month,max_date_day);
             var ohtScale = d3.scaleTime()
-                .domain([min_date,max_date])//d3.extent(oh_dates, function(d) { return new Date(oh_dates);}))
+                .domain([min_date,max_date])
                 .range([0, width]);
             var xScale = d3.scaleLinear()
-                .domain([0, n]) // input
-                .range([0, width]); // output
+                .domain([0, n])
+                .range([0, width]);
             var xAxis = d3.scaleLinear()
                 .domain([start,n])
                 .range([0,width]);
             var yScale = d3.scaleLinear()
-                .domain([0, yscale]) // input
-                .range([height, 0]); // output
-            //var dataset = d3.range(end).map(function(d,i) { return {"y": (oh_cases[i]) } })
-            //var dataset2 = d3.range(end).map(function(d,i) { return {"y": (mi_cases[i]) } })
+                .domain([0, yscale])
+                .range([height, 0]);
+
             var ohline = d3.line()
-                //.x(function(d, i) { return xScale(i); } )//oh_dates[i]; })//xScale(i); }) // set the x values for the line generator
+
                 .x(function(d, i) { return xScale(i); })
-                .y(function(d,i) { return yScale(oh_cases_sc1[i]); }) // set the y values for the line generator
+                .y(function(d,i) { return yScale(oh_cases_sc1[i]); })
             var miline = d3.line()
-                //.x(function(d, i) { return xScale(i); } )//oh_dates[i]; })//xScale(i); }) // set the x values for the line generator
+
                 .x(function(d, i) { return xScale(i); })
-                .y(function(d,i) { return yScale(mi_cases_sc1[i]); }) // set the y values for the line generator
+                .y(function(d,i) { return yScale(mi_cases_sc1[i]); })
         }
         if (i==2) {
             var oh_cases_sc2 = [2903,3312,3739,4043,4450,4783,5149,5513,5879,6251,6605,6975,7280,7791,8414,9107,10222,11602,12919,13725,14117,14694,15169,15587,15963,16325,16769,17303,18027,18743,19335,19914,20474,20969,21576,22131,23018,23697,24086,24785,25257,25727,26363,26956,27476,27925,28455,28953,29437,30168,30795,31408,31911];
@@ -317,10 +340,9 @@
             console.log("click two");
             var oh_KE_numdates2 = [24,26,38,49,50,66,67];
             var oh_KE_oh_cases2 = [2903,3739,8414,16325,16769,26363,26956];
-            var mi_KE_numdates2 = [27,30,32,33,34,43,54,74,75];//[26,29,31,32,33,42,53,73,74];
+            var mi_KE_numdates2 = [27,30,32,33,34,43,54,74,75];
             var mi_KE_mi_cases2 = [15633,20220,22646,23855,24496,32936,43191,53865,54304];
-            oh_KE_numdates=[25,26,38,49,50,66,67];//[24,24,24,24,24,24,24,24,24,25,26,38,49,50,66,67,77,77,77,77,77,77,77];
-            //53 days; starts at 24
+            oh_KE_numdates=[25,26,38,49,50,66,67];
             start = 24;
             n = 77;
             yscale_bot = 2800;
@@ -328,7 +350,7 @@
             botrec_x = width*(39/200);
             botrec_width = width*(86/200);
             var temp_min = newDate(min_date_month,min_date_day,start);
-            var temp_max = newDate(min_date_month,min_date_day,n);//newDate(max_date_month,max_date_day,end);
+            var temp_max = newDate(min_date_month,min_date_day,n);
             var min_date_month = temp_min.m;
             var min_date_day = temp_min.d;
             var max_date_month = temp_max.m;
@@ -336,39 +358,32 @@
             var min_date = new Date(2020,min_date_month,min_date_day),
                 max_date = new Date(2020,max_date_month,max_date_day);
             var ohtScale = d3.scaleTime()
-                .domain([min_date,max_date])//d3.extent(oh_dates, function(d) { return new Date(oh_dates);}))
+                .domain([min_date,max_date])
                 .range([0, width]);
             var xScale = d3.scaleLinear()
                 .domain([0,53])
-                //.domain([start, n]) // input
-                .range([0, width]); // output
+                .range([0, width]);
             var xAxis = d3.scaleLinear()
                 .domain([start,n])
                 .range([0,width]);
             var yScale = d3.scaleLinear()
-                .domain([yscale_bot, yscale]) // input
-                .range([height, 0]); // output
-            //var dataset = d3.range(end).map(function(d,i) { return {"y": (oh_cases[i]) } })
-            //var dataset2 = d3.range(end).map(function(d,i) { return {"y": (mi_cases[i]) } })
+                .domain([yscale_bot, yscale])
+                .range([height, 0]);
             var ohline = d3.line()
-                //.x(function(d, i) { return xScale(i); } )//oh_dates[i]; })//xScale(i); }) // set the x values for the line generator
                 .x(function(d, i) { return xScale(i); })
-                .y(function(d,i) { return yScale(oh_cases_sc2[i]); }) // set the y values for the line generator
+                .y(function(d,i) { return yScale(oh_cases_sc2[i]); })
             var miline = d3.line()
-                //.x(function(d, i) { return xScale(i); } )//oh_dates[i]; })//xScale(i); }) // set the x values for the line generator
                 .x(function(d, i) { return xScale(i); })
-                .y(function(d,i) { return yScale(mi_cases_sc2[i]); }) // set the y values for the line generator
+                .y(function(d,i) { return yScale(mi_cases_sc2[i]); })
         }
         if (i==3) {
             console.log("click three");
             var oh_KE_numdates3 =  [81,84,89,92,102,114,122];
-            //[80,83,88,91,101,113,121];
             var oh_KE_oh_cases3 = [33915,35513,37758,38837,43122,51789,60181];
             oh_KE_numdates=[78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,80,83,88,91,101,113,121];
             var oh_cases_sc3 = [32477,33006,33439,33915,34566,35034,35513,35984,36350,36792,37282,37758,38111,38476,38837,39162,39575,40004,40424,40848,41148,41576,42010,42422,43122,43731,44262,44808,45537,46127,46759,47651,48638,49455,50309,51046,51789,52865,54166,55257,56183,57151,57956,58904,60181];
-            //var oh_KE_oh_cases3 = [33915,35513,37758,38837,43122,51789,60181];
             var mi_cases_sc3 = [54816,55040,55544,55944,56589,56848,57355,58435,58680,58990,59215,63744,64196,64615,64911,65190,65377,65627,65881,66024,66246,66302,66466,66694,66980,67300,67721,67873,68144,68373,68711,69159,69473,69802,70042,70356,70850,71279,71853,72306,72702,73027,73403,74011,74660];
-            var mi_KE_numdates3 = [83,86,88,90,103,115,121,122];//[81,84,86,88,101,113,119,120];
+            var mi_KE_numdates3 = [83,86,88,90,103,115,121,122];
             var mi_KE_mi_cases3 = [56848,58680,59215,64196,67300,71279,74011,74660];
             start = 78;
             n = 123;
@@ -377,7 +392,7 @@
             botrec_x = width*(125/200);
             botrec_width = width*(75/200);
             var temp_min = newDate(min_date_month,min_date_day,start);
-            var temp_max = newDate(min_date_month,min_date_day,n);//newDate(max_date_month,max_date_day,end);
+            var temp_max = newDate(min_date_month,min_date_day,n);
             var min_date_month = temp_min.m;
             var min_date_day = temp_min.d;
             var max_date_month = temp_max.m;
@@ -385,28 +400,23 @@
             var min_date = new Date(2020,min_date_month,min_date_day),
                 max_date = new Date(2020,max_date_month,max_date_day);
             var ohtScale = d3.scaleTime()
-                .domain([min_date,max_date])//d3.extent(oh_dates, function(d) { return new Date(oh_dates);}))
+                .domain([min_date,max_date])
                 .range([0, width]);
             var xScale = d3.scaleLinear()
-                .domain([0,45])//48])
-                //.domain([start, n]) // input
-                .range([0, width]); // output
+                .domain([0,45])
+                .range([0, width]);
             var xAxis = d3.scaleLinear()
                 .domain([start,n])
                 .range([0,width]);
             var yScale = d3.scaleLinear()
-                .domain([yscale_bot, yscale]) // input
-                .range([height, 0]); // output
-            //var dataset = d3.range(end).map(function(d,i) { return {"y": (oh_cases[i]) } })
-            //var dataset2 = d3.range(end).map(function(d,i) { return {"y": (mi_cases[i]) } })
+                .domain([yscale_bot, yscale])
+                .range([height, 0]);
             var ohline = d3.line()
-                //.x(function(d, i) { return xScale(i); } )//oh_dates[i]; })//xScale(i); }) // set the x values for the line generator
                 .x(function(d, i) { return xScale(i); })
-                .y(function(d,i) { return yScale(oh_cases_sc3[i]); }) // set the y values for the line generator
+                .y(function(d,i) { return yScale(oh_cases_sc3[i]); })
             var miline = d3.line()
-                //.x(function(d, i) { return xScale(i); } )//oh_dates[i]; })//xScale(i); }) // set the x values for the line generator
                 .x(function(d, i) { return xScale(i); })
-                .y(function(d,i) { return yScale(mi_cases_sc3[i]); }) // set the y values for the line generator
+                .y(function(d,i) { return yScale(mi_cases_sc3[i]); })
         }
         if (i ==4 ){
             console.log("click Oveview");
@@ -421,7 +431,7 @@
             var mi_KE_mi_cases3 = [56848,58680,59215,64196,67300,71279,74011,74660];
             botrec_x = 0;
             botrec_width = width;
-            n = 123;//122;
+            n = 123;
             start = 0;
             //---------------------FRAME VARIABLES----------------------
             //******************************************************************************************************************
@@ -446,57 +456,31 @@
 
             var xScale = d3.scaleLinear()
                 .domain([start,123])
-                //.domain([start, n]) // input
-                .range([0, width]); // output
+                .range([0, width]);
             var xAxis = d3.scaleLinear()
                 .domain([start,n])
                 .range([0,width]);
             var yScale = d3.scaleLinear()
-                .domain([yscale_bot, yscale]) // input
-                .range([height, 0]); // output
-            //var dataset = d3.range(end).map(function(d,i) { return {"y": (oh_cases[i]) } })
-            //var dataset2 = d3.range(end).map(function(d,i) { return {"y": (mi_cases[i]) } })
+                .domain([yscale_bot, yscale])
+                .range([height, 0]);
+
             var ohline = d3.line()
-                //.x(function(d, i) { return xScale(i); } )//oh_dates[i]; })//xScale(i); }) // set the x values for the line generator
                 .x(function(d, i) { return xScale(i); })
-                .y(function(d,i) { return yScale(oh_cases[i]); }) // set the y values for the line generator
+                .y(function(d,i) { return yScale(oh_cases[i]); })
             var miline = d3.line()
-                //.x(function(d, i) { return xScale(i); } )//oh_dates[i]; })//xScale(i); }) // set the x values for the line generator
+
                 .x(function(d, i) { return xScale(i); })
-                .y(function(d,i) { return yScale(mi_cases[i]); }) // set the y values for the line generator
+                .y(function(d,i) { return yScale(mi_cases[i]); })
 
         }
-        //var end = n;//122;
-        //var xScale = d3.scaleLinear()
-        //    .domain([start, end]) // input
-        //   .range([0, width]); // output
-        //var yScale = d3.scaleLinear()
-        //    .domain([yscale_bot, yscale]) // input
-        ///   .range([height, 0]); // output
-        //var dataset = d3.range(end).map(function(d,i) { return {"y": (oh_cases[i]) } })
-        //var dataset2 = d3.range(end).map(function(d,i) { return {"y": (mi_cases[i]) } })
-        //var ohline = d3.line()
-        //    //.x(function(d, i) { return xScale(i); } )//oh_dates[i]; })//xScale(i); }) // set the x values for the line generator
-        //    .x(function(d, i) { return xScale(i); })
-        //    .y(function(d,i) { return yScale(oh_cases[i]); }) // set the y values for the line generator
-        //     .curve(d3.curveMonotoneX) // apply smoothing to the line
-        //var miline = d3.line()
-        //   .x(function(d, i) { return xScale(i); })
-        //   .y(function(d,i) { return yScale(mi_cases[i]); }) // set the y values for the line generator
-        //var ohdot = d3.circle()
-        //   .attr("cx", function(d, i) { return xScale(oh_KE_numdates[i])})//xScale(i) })
-        //   .attr("cy", function(d) { return yScale(d)}) //yScale(d.y) })
-        //   .attr("r", 5);
+
         var ohtScale = d3.scaleTime()
-            .domain([min_date,max_date])//d3.extent(oh_dates, function(d) { return new Date(oh_dates);}))
+            .domain([min_date,max_date])
             .range([0, width]);
-        var svg = d3.select("body").select("svg").transition()//.attr("transform", "translate(" + margin.left + "," + margin.top + ")")//.attr("transform","translate(0,0)");//" + margin.top);// + (margin.left) + "," + (margin.top) );
-        //var tsvg = d3.selectAll(".botrec").transition().duration(750).attr("x",botrec_x).attr("width",botrec_width);
-        //plotTopGraph();
-        //var Axis_bottom_x(d3.axisBottom(xScale));
-        //xAxis_Main.call(Axis_bottom_x);
+        var svg = d3.select("body").select("svg").transition()
+
         svg.select(".ohline").duration(duration).attr("d",ohline);
-        //svg.select(".ohline").duration(750).datum(dataset).attr("d",line);
+
         svg.select(".miline").duration(duration).attr("d",miline);
         svg.select(".xaxis").duration(750).call(d3.axisBottom(ohtScale).ticks(6));//xAxis));
         svg.select(".yaxis").duration(750).call(d3.axisLeft(yScale).tickFormat(function (d) {
@@ -541,6 +525,8 @@
                 .attr("cy", 0);
             svg.selectAll(".scene2_annotation_box1").style("opacity",1);
             svg.selectAll(".scene2_annotation_line1").style("opacity",1);
+            svg.selectAll(".scene2_annotation_box2").style("opacity",1);
+            svg.selectAll(".scene2_annotation_line2").style("opacity",1);
         }
         else if (i==3) {
             svg.selectAll(".ohdot3").duration(duration).attr("cx", function(d, i) { return xAxis(oh_KE_numdates3[i])})//xScale(i) })
@@ -555,6 +541,10 @@
                 .attr("cy", 0);
             svg.selectAll(".midot1").duration(duration).attr("cx", 0)
                 .attr("cy", 0);
+            svg.selectAll(".scene3_annotation_box1").style("opacity",1);
+            svg.selectAll(".scene3_annotation_line1").style("opacity",1);
+            svg.selectAll(".scene3_annotation_box2").style("opacity",1);
+            svg.selectAll(".scene3_annotation_line2").style("opacity",1);
         }
         else if (i==4) {
             svg.selectAll(".overall_annotation_box1").style("opacity",1);
@@ -574,30 +564,9 @@
             svg.selectAll(".midot3").duration(duration).attr("cx", function(d, i) { return xAxis(mi_KE_numdates3[i])})//xScale(i) })
                 .attr("cy", function(d) { return yScale(d)});
         }
-        // .attr("r", 5);
-        //Axis_bottom_x = d3.axisBottom(xScale);//ohtScale);
-        //Axis_bottom_x.tickSize(10);
 
-        //Axis_bottom_x = d3.axisBottom(xScale);//ohtScale);
-
-
-        //Axis_bottom_x.tickSize(10)
-        //var xAxis_Main = svg.append("g")
-        //    .attr("class", "axis")
-        //    .attr("transform", "translate(0," + height + ")")
-        //    //.call(d3.axisBottom(//xScale));
-        //    .call(Axis_bottom_x);
-        //var ohPath = svg.append("path")
-        //    .datum(dataset)//.datum(dataset) // 10. Binds data to the line
-        //    .attr("class", "ohline") // Assign a class for styling
-        //    .attr("d", line); // 11. Calls the line generator
-        //var miPath = svg.append("path")
-        //    .datum(dataset2) // 10. Binds data to the line
-        //    .attr("class", "miline") // Assign a class for styling
-        //    .attr("d", line) // 11. Calls the line generator
-        //    .attr("stroke","blue");
     }
-    // Three function that change the tooltip when user hover / move / leave a cell
+
     var oh_mouseover1 = function(d,i) {
         d3.select('#tooltip')
             .style('left', (d3.event.pageX + 10) + 'px')
@@ -727,15 +696,7 @@
             .style('top', (d3.event.pageY + 10) + 'px')
 
     }
-    //    var xPosition = d3.mouse(this)[0] + 10;
-    //   var yPosition = d3.mouse(this)[1] - 5;
-    //   Tooltip
-    //       .html(oh_KE[i])
-    //       //.style("left", (d3.mouse(this)[0]+70) + "px")
-    //       //.style("top", (d3.mouse(this)[1]) + "px")
-    //       .style("display","inline")
-    //       attr("transform", "translate(" + xPosition + "," + yPosition + ")");
-    //}
+
     var mouseleave = function(d,i) {
         Tooltip
             .style("opacity", 0)
@@ -746,14 +707,14 @@
             .attr("stroke-width","1")
     }
     //---------------------FRAME VARIABLES----------------------
-    graph_width = window.innerWidth/1.5;//700;
-    graph_height = window.innerHeight/1.2;//700;
-    // 2. Use the margin convention practice
+    graph_width = window.innerWidth/1.5;
+    graph_height = window.innerHeight/1.2;
+
     var margin = {top: 50, right: 50, bottom: 50, left:100}
-        , width = graph_width - margin.left - margin.right //window.innerWidth - margin.left - margin.right // Use the window's width
-        , height = graph_height*3/4 - margin.top - margin.bottom;//window.innerHeight - margin.top - margin.bottom; // Use the window's height
-    timeline_svg_width = width; //- margin.right;// - margin.left;
-    bottom_height = graph_height/4;//- margin.top - margin.bottom;
+        , width = graph_width - margin.left - margin.right
+        , height = graph_height*3/4 - margin.top - margin.bottom;
+    timeline_svg_width = width;
+    bottom_height = graph_height/4;
     timeline_svg_height = bottom_height-margin.top - margin.bottom;
 
     // The number of datapoints
@@ -761,13 +722,12 @@
     var start = 0;
     var end = n;//122;
     var yscale = 75000;
-    //var timelineyscale =
+
     //---------------------FRAME VARIABLES----------------------
     //******************************************************************************************************************
     //---------------------OHIO VARIABLES----------------------
     var oh_cases = [3,3,4,5,13,26,37,50,67,90,120,169,247,351,444,564,707,867,1144,1406,1665,1933,2199,2548,2903,3312,3739,4043,4450,4783,5149,5513,5879,6251,6605,6975,7280,7791,8414,9107,10222,11602,12919,13725,14117,14694,15169,15587,15963,16325,16769,17303,18027,18743,19335,19914,20474,20969,21576,22131,23018,23697,24086,24785,25257,25727,26363,26956,27476,27925,28455,28953,29437,30168,30795,31408,31911,32477,33006,33439,33915,34566,35034,35513,35984,36350,36792,37282,37758,38111,38476,38837,39162,39575,40004,40424,40848,41148,41576,42010,42422,43122,43731,44262,44808,45537,46127,46759,47651,48638,49455,50309,51046,51789,52865,54166,55257,56183,57151,57956,58904,60181]
-    //ar oh_KE = ["];
-    //var oh_dates = [03-09-2020,03-10-2020,03-11-2020,03-12-2020,03-13-2020,03-14-2020,03-15-2020,03-16-2020,03-17-2020,03-18-2020,03-19-2020,03-20-2020,03-21-2020,03-22-2020,03-23-2020,03-24-2020,03-25-2020,03-26-2020,03-27-2020,03-28-2020,03-29-2020,03-30-2020,03-31-2020,04-01-2020,04-02-2020,04-03-2020,04-04-2020,04-05-2020,04-06-2020,04-07-2020,04-08-2020,04-09-2020,04-10-2020,04-11-2020,04-12-2020,04-13-2020,04-14-2020,04-15-2020,04-16-2020,04-17-2020,04-18-2020,04-19-2020,04-20-2020,04-21-2020,04-22-2020,04-23-2020,04-24-2020,04-25-2020,04-26-2020,04-27-2020,04-28-2020,04-29-2020,04-30-2020,05-01-2020,05-02-2020,05-03-2020,05-04-2020,05-05-2020,05-06-2020,05-07-2020,05-08-2020,05-09-2020,05-10-2020,05-11-2020,05-12-2020,05-13-2020,05-14-2020,05-15-2020,05-16-2020,05-17-2020,05-18-2020,05-19-2020,05-20-2020,05-21-2020,05-22-2020,05-23-2020,05-24-2020,05-25-2020,05-26-2020,05-27-2020,05-28-2020,05-29-2020,05-30-2020,05-31-2020,06-01-2020,06-02-2020,06-03-2020,06-04-2020,06-05-2020,06-06-2020,06-07-2020,06-08-2020,06-09-2020,06-10-2020,06-11-2020,06-12-2020,06-13-2020,06-14-2020,06-15-2020,06-16-2020,06-17-2020,06-18-2020,06-19-2020,06-20-2020,06-21-2020,06-22-2020,06-23-2020,06-24-2020,06-25-2020,06-26-2020,06-27-2020,06-28-2020,06-29-2020,06-30-2020,07-01-2020,07-02-2020,07-03-2020,07-04-2020,07-05-2020,07-06-2020,07-07-2020,07-08-2020];
+
     var oh_KE = ["OH: Governor Signs emergency order for COVID-19","OH: Governor limits indoor gatherings, closes schools","OH: Dept of Health asks residents to take steps to slow the virus","OH: Governor declares State of emergency","OH: Governor closes bars and restaurants","OH: Governor closes businesses","OH: Governor issues Stay at Home Order","OH: Governor extends Stay at Home Order through May 1","OH: Govt establish Hospital Preparedness Regions and Zones","OH: Govt orders all health facilities to becomes centers that can conduct COVID-19 testing","OH: Govt encouraged to wear masks","OH: Govt discuss reopening businesses","OH: Governor identifies 15 / 27 May for OH reopening","OH: Governor states face masks not legal requirement in OH","OH: Govt announces New Responsible Restart - Ohio opening dates","OH: Govt opens restaurants, bars, and haircuts for business","OH: Assisted Living open for visitors","OH: Govt opens most places in ohio without facemasks","OH: Govt opened elective surgeries and all schools","OH: Govt affirms that all restaurants and businesses are open but should social distance, masks not required","OH: Govt announces case numbers are decreasing","OH: Govt announces sports, fairs, and animal exhibitions open with guidance and exceptions","OH: Govt face coverings required in high-risk counties"];
     var oh_KE1 = ["OH: Governor Signs emergency order for COVID-19","OH: Governor limits indoor gatherings, closes schools","OH: Dept of Health asks residents to take steps to slow the virus","OH: Governor declares State of emergency","OH: Governor closes bars and restaurants","OH: Governor closes businesses","OH: Governor issues Stay at Home Order","OH: Governor extends Stay at Home Order through May 1","OH: Govt establish Hospital Preparedness Regions and Zones"];
     var oh_KE2 = ["OH: Govt orders all health facilities to becomes centers that can conduct COVID-19 testing","OH: Govt encouraged to wear masks","OH: Govt discuss reopening businesses","OH: Governor identifies 15 / 27 May for OH reopening","OH: Governor states face masks not legal requirement in OH","OH: Govt announces New Responsible Restart - Ohio opening dates","OH: Govt opens restaurants, bars, and haircuts for business"];
@@ -779,9 +739,7 @@
     var oh_KE_dates3 = ["28 May, 2020", "31 May, 2020", "5 June, 2020","8 June, 2020", "18 June, 2020", "30 June, 2020", "8 July, 2020"];
     var oh_KE_count = 23;
     var oh_KE_numdates = [0,1,4,5,6,9,13,21,23,24,26,38,49,50,66,67,80,83,88,91,101,113,121];
-    //var oh_cases1 = [3,3,4,5,13,26,37,50,67,90,120,169,247,351,444,564,707,867,1144,1406,1665,1933,2199,2548,2903];
-    //var oh_cases2 = [2903,3312,3739,4043,4450,4783,5149,5513,5879,6251,6605,6975,7280,7791,8414,9107,10222,11602,12919,13725,14117,14694,15169,15587,15963,16325,16769,17303,18027,18743,19335,19914,20474,20969,21576,22131,23018,23697,24086,24785,25257,25727,26363,26956];
-    //var oh_cases3 = [27476,27925,28455,28953,29437,30168,30795,31408,31911,32477,33006,33439,33915,34566,35034,35513,35984,36350,36792,37282,37758,38111,38476,38837,39162,39575,40004,40424,40848,41148,41576,42010,42422,43122,43731,44262,44808,45537,46127,46759,47651,48638,49455,50309,51046,51789,52865,54166,55257,56183,57151,57956,58904,60181];
+
     var oh_KE_oh_cases = [3,3,13,26,37,90,351,1933,2548,2903,3739,8414,16325,16769,26363,26956,33915,35513,37758,38837,43122,51789,60181];
     var oh_KE_numdates1 = [0,1,4,5,6,9,13,21,23];
     var oh_KE_numdates2 = [24,26,38,49,50,66,67];
@@ -828,32 +786,22 @@
 
     var min_date = new Date(2020,min_date_month,min_date_day),
         max_date = new Date(2020,max_date_month,max_date_day);
-    //console.log(min_date);
-    //console.log(max_date);
-    //var oh_dates2 = [{“date”:“03-09-2020T00:00:00”},{“date”:”03-10-2020T00:00:00”},{“date”:”03-11-2020T00:00:00”},{“date”:”03-12-2020T00:00:00”},{“date”:”03-13-2020T00:00:00”},{“date”:”03-14-2020T00:00:00”},{“date”:”03-15-2020T00:00:00”},{“date”:”03-16-2020T00:00:00”},{“date”:”03-17-2020T00:00:00”},{“date”:”03-18-2020T00:00:00”},{“date”:”03-19-2020T00:00:00”},{“date”:”03-20-2020T00:00:00”},{“date”:”03-21-2020T00:00:00”},{“date”:”03-22-2020T00:00:00”},{“date”:”03-23-2020T00:00:00”},{“date”:”03-24-2020T00:00:00”},{“date”:”03-25-2020T00:00:00”},{“date”:”03-26-2020T00:00:00”},{“date”:”03-27-2020T00:00:00”},{“date”:”03-28-2020T00:00:00”},{“date”:”03-29-2020T00:00:00”},{“date”:”03-30-2020T00:00:00”},{“date”:”03-31-2020T00:00:00”},{“date”:”04-01-2020T00:00:00”},{“date”:”04-02-2020T00:00:00”},{“date”:”04-03-2020T00:00:00”},{“date”:”04-04-2020T00:00:00”},{“date”:”04-05-2020T00:00:00”},{“date”:”04-06-2020T00:00:00”},{“date”:”04-07-2020T00:00:00”},{“date”:”04-08-2020T00:00:00”},{“date”:”04-09-2020T00:00:00”},{“date”:”04-10-2020T00:00:00”},{“date”:”04-11-2020T00:00:00”},{“date”:”04-12-2020T00:00:00”},{“date”:”04-13-2020T00:00:00”},{“date”:”04-14-2020T00:00:00”},{“date”:”04-15-2020T00:00:00”},{“date”:”04-16-2020T00:00:00”},{“date”:”04-17-2020T00:00:00”},{“date”:”04-18-2020T00:00:00”},{“date”:”04-19-2020T00:00:00”},{“date”:”04-20-2020T00:00:00”},{“date”:”04-21-2020T00:00:00”},{“date”:”04-22-2020T00:00:00”},{“date”:”04-23-2020T00:00:00”},{“date”:”04-24-2020T00:00:00”},{“date”:”04-25-2020T00:00:00”},{“date”:”04-26-2020T00:00:00”},{“date”:”04-27-2020T00:00:00”},{“date”:”04-28-2020T00:00:00”},{“date”:”04-29-2020T00:00:00”},{“date”:”04-30-2020T00:00:00”},{“date”:”05-01-2020T00:00:00”},{“date”:”05-02-2020T00:00:00”},{“date”:”05-03-2020T00:00:00”},{“date”:”05-04-2020T00:00:00”},{“date”:”05-05-2020T00:00:00”},{“date”:”05-06-2020T00:00:00”},{“date”:”05-07-2020T00:00:00”},{“date”:”05-08-2020T00:00:00”},{“date”:”05-09-2020T00:00:00”},{“date”:”05-10-2020T00:00:00”},{“date”:”05-11-2020T00:00:00”},{“date”:”05-12-2020T00:00:00”},{“date”:”05-13-2020T00:00:00”},{“date”:”05-14-2020T00:00:00”},{“date”:”05-15-2020T00:00:00”},{“date”:”05-16-2020T00:00:00”},{“date”:”05-17-2020T00:00:00”},{“date”:”05-18-2020T00:00:00”},{“date”:”05-19-2020T00:00:00”},{“date”:”05-20-2020T00:00:00”},{“date”:”05-21-2020T00:00:00”},{“date”:”05-22-2020T00:00:00”},{“date”:”05-23-2020T00:00:00”},{“date”:”05-24-2020T00:00:00”},{“date”:”05-25-2020T00:00:00”},{“date”:”05-26-2020T00:00:00”},{“date”:”05-27-2020T00:00:00”},{“date”:”05-28-2020T00:00:00”},{“date”:”05-29-2020T00:00:00”},{“date”:”05-30-2020T00:00:00”},{“date”:”05-31-2020T00:00:00”},{“date”:”06-01-2020T00:00:00”},{“date”:”06-02-2020T00:00:00”},{“date”:”06-03-2020T00:00:00”},{“date”:”06-04-2020T00:00:00”},{“date”:”06-05-2020T00:00:00”},{“date”:”06-06-2020T00:00:00”},{“date”:”06-07-2020T00:00:00”},{“date”:”06-08-2020T00:00:00”},{“date”:”06-09-2020T00:00:00”},{“date”:”06-10-2020T00:00:00”},{“date”:”06-11-2020T00:00:00”},{“date”:”06-12-2020T00:00:00”},{“date”:”06-13-2020T00:00:00”},{“date”:”06-14-2020T00:00:00”},{“date”:”06-15-2020T00:00:00”},{“date”:”06-16-2020T00:00:00”},{“date”:”06-17-2020T00:00:00”},{“date”:”06-18-2020T00:00:00”},{“date”:”06-19-2020T00:00:00”},{“date”:”06-20-2020T00:00:00”},{“date”:”06-21-2020T00:00:00”},{“date”:”06-22-2020T00:00:00”},{“date”:”06-23-2020T00:00:00”},{“date”:”06-24-2020T00:00:00”},{“date”:”06-25-2020T00:00:00”},{“date”:”06-26-2020T00:00:00”},{“date”:”06-27-2020T00:00:00”},{“date”:”06-28-2020T00:00:00”},{“date”:”06-29-2020T00:00:00”},{“date”:”06-30-2020T00:00:00”},{“date”:”07-01-2020T00:00:00”},{“date”:”07-02-2020T00:00:00”},{“date”:”07-03-2020T00:00:00”},{“date”:”07-04-2020T00:00:00”},{“date”:”07-05-2020T00:00:00”},{“date”:”07-06-2020T00:00:00”},{“date”:”07-07-2020T00:00:00”},{“date”:”07-08-2020T00:00:00”}];
+
+
+
     var mi_cases = [2,2,12,25,33,53,54,65,80,334,548,787,1033,1324,1791,2293,2877,3655,4634,5486,6508,7629,9292,10791,12669,14225,15633,17129,18851,20220,21375,22646,23855,24496,25490,26845,27894,29120,29954,30718,31349,31929,32936,33973,35253,36628,37302,38003,38457,39469,40443,41348,42348,43191,43803,43996,44391,45079,45643,46319,46735,47116,47526,47946,48307,49489,49982,50416,51054,51853,52337,52988,53468,53865,54304,54616,54816,55040,55544,55944,56589,56848,57355,58435,58680,58990,59215,63744,64196,64615,64911,65190,65377,65627,65881,66024,66246,66302,66466,66694,66980,67300,67721,67873,68144,68373,68711,69159,69473,69802,70042,70356,70850,71279,71853,72306,72702,73027,73403,74011,74660]
     //---------------------DATE VARIABLES----------------------
     //******************************************************************************************************************
     //-----------------SCALES----------------
     var xScale = d3.scaleLinear()
-        .domain([start, n]) // input
-        .range([0, width]); // output
-
-    //var ohxScale_bubble = d3.scaleLinear()
-    //    .domain([0,n])
-    //    .range([0,width]);
-    //var mixScale_bubble = d3.scaleLinear()
-    //    .domain([start,mi_KE_count])
-    //    .range([0,width]);
-
-    var ohtScale = d3.scaleTime()
-        .domain([min_date,max_date])//d3.extent(oh_dates, function(d) { return new Date(oh_dates);}))
+        .domain([start, n])
         .range([0, width]);
-    //var yScaleTimeline
-
+    var ohtScale = d3.scaleTime()
+        .domain([min_date,max_date])
+        .range([0, width]);
     var yScale = d3.scaleLinear()
-        .domain([0, yscale]) // input
-        .range([height, 0]); // output
+        .domain([0, yscale])
+        .range([height, 0]);
     var timelineYScale = d3.scaleLinear()
         .domain([0,100])
         .range([timeline_svg_height,0]);
@@ -862,19 +810,13 @@
     //******************************************************************************************************************
     //-----------------Create a line element----------------
     var line = d3.line()
-        //.x(function(d, i) { return xScale(i); } )//oh_dates[i]; })//xScale(i); }) // set the x values for the line generator
         .x(function(d, i) { return xScale(i); })
-        .y(function(d) { return yScale(d.y); }) // set the y values for the line generator
-        .curve(d3.curveMonotoneX) // apply smoothing to the line
+        .y(function(d) { return yScale(d.y); })
+        .curve(d3.curveMonotoneX)
     //-----------------Create a line element----------------
     //******************************************************************************************************************
     //-----------------Create our datasets----------------
-    //Plot our data
     var dataset = d3.range(end).map(function(d,i) { return {"y": (oh_cases[i]) } });
-    //var oh_dataset1 = d3.range(end).map(function(d,i) { return {"y": (oh_cases1[i]) } });
-    //var oh_dataset2 = d3.range(end).map(function(d,i) { return {"y": (oh_cases2[i]) } });
-    //var oh_dataset3 = d3.range(end).map(function(d,i) { return {"y": (oh_cases3[i]) } });
-
     var dataset2 = d3.range(end).map(function(d,i) { return {"y": (mi_cases[i]) } });
     var OH_KE_Dataset = d3.range(oh_KE_count).map(function(d,i) { return {"y": (oh_cases[oh_KE_numdates[i]]) }});
     //-----------------Create our datasets----------------
@@ -882,52 +824,32 @@
     // create a tooltip
     var Tooltip = d3.select("body")
         .append("div")
-        //.style("opacity", 0)
         .attr('id', 'tooltip')
         .attr('style', 'position: absolute; opacity: 0; border: solid;border-width: 2px; border-radius: 5px; padding:5px;background-color: white')
         .attr("stroke","black")
         .attr("stroke-width", "4px")
-    //.attr("style","font: 16px sanserif")
-    //.attr("class", "tooltip")
-    //.style("background-color", "white")
-    //.style("border", "solid")
-    //.style("border-width", "2px")
-    //.style("border-radius", "5px")
-    //.style("padding", "5px")
+
     //-----------------SVG----------------
     //Begin drawing our diagram
     var svg = d3.select("body").append("svg")
-        .attr("width", graph_width)//.innerWidth/1.5)//width + margin.left + margin.right)
-        .attr("height", graph_height)//.innerHeight/1.2)//height + margin.top + margin.bottom)
+        .attr("width", graph_width)
+        .attr("height", graph_height)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-    //plotTopGraph();
+
     console.log("N is equal to " + n);
     //******************************************************************************************************************
-
-
     //-----------------SVG BOTTOM AXIS----------------
     //add a bottom axis
-    //var xAxis = d3.svg.axis().scale(d3.scale.linear().range([0,width])).orient("bottom").ticks(10);
 
-
-    //working code
-    Axis_bottom_x = d3.axisBottom(ohtScale);//xScale);//ohtScale);
+    Axis_bottom_x = d3.axisBottom(ohtScale);
     Axis_bottom_x.ticks(5)
     Axis_bottom_x.tickSize(10)
     var xAxis_Main = svg.append("g")
         .attr("class", "xaxis")
-        .attr("transform", "translate(0," +height+")")//+ margin.left + "," + height + ")")
-        //.call(d3.axisBottom(//xScale));
+        .attr("transform", "translate(0," +height+")")
         .call(Axis_bottom_x); //xScale));
-    //working code
 
-
-
-
-
-    //.tickFormat(d3.timeFormat("%mm-%dd-%YYYY"))
-    //.ticks(122);
     //-----------------SVG BOTTOM AXIS----------------
     //******************************************************************************************************************
     //-----------------SVG LEFT AXIS----------------
@@ -951,12 +873,6 @@
         .text('Number of Cases Total');
 
 
-
-    //svg.append('text')
-    //    .attr('x', width / 2 + margin)
-    //   .attr('y', 40)
-    //   .attr('text-anchor', 'middle')
-    //   .text('Most loved programming languages in 2018')
     //-----------------SVG LEFT AXIS----------------
     //******************************************************************************************************************
     //-----------------SVG PLOT DATA AND DOTS----------------
@@ -982,12 +898,7 @@
         .on("mouseover", oh_mouseover1)
         .on("mousemove", mousemove)
         .on("mouseleave", mouseleave);
-    //.on("mouseover", function(d, i) {
-    //    console.log(oh_KE1[i]);
-    //    //this.attr('class', 'focus')
-    //    Tooltip.html(oh_KE1[i]).style("opacity", 1);
-    //})
-    //.on("mouseout", function() {  })
+
     var ohDot = svg.selectAll(".dot")
         .data(oh_KE_oh_cases2)//dataset)//dataset)
         .enter().append("circle") // Uses the enter().append() method
@@ -1083,10 +994,11 @@
         .attr("y1", annotation_height-height*(10/100))
         .attr("x2", annotation_width+width*(10/100))
         .attr("y2", height/2.2);
-    svg.selectAll(".overall_annotation_box1").style("opacity",0);
-    svg.selectAll(".overall_annotation_line1").style("opacity",0);
-    svg.selectAll(".overall_annotation_box2").style("opacity",0);
-    svg.selectAll(".overall_annotation_line2").style("opacity",0);
+    //svg.selectAll(".overall_annotation_box1").style("opacity",0);
+    //svg.selectAll(".overall_annotation_line1").style("opacity",0);
+    //svg.selectAll(".overall_annotation_box2").style("opacity",0);
+    //svg.selectAll(".overall_annotation_line2").style("opacity",0);
+    //created by ben kedo
 
     var annotation_width = width*(79.4/100);
     var annotation_height = height/14;
@@ -1137,7 +1049,7 @@
         .attr("y2", annotation_height+height*(82/100));
     svg.selectAll(".scene1_annotation_box2").style("opacity",0);
     svg.selectAll(".scene1_annotation_line2").style("opacity",0);
-
+    //created by ben kedo
     var annotation_width = width*15.6/100;
     var annotation_height = height/20;
     var text_box = "Michigan begins drive\nthrough testing which\nhelps flatten their curve";
@@ -1161,58 +1073,97 @@
         .attr("y2", annotation_height+height*(52/100));
     svg.selectAll(".scene2_annotation_box1").style("opacity",0);
     svg.selectAll(".scene2_annotation_line1").style("opacity",0);
+
+    var annotation_width = width*45.8/100;
+    var annotation_height = height/20;
+    var text_box = "Ohio Governor makes\nmask optional and\ntheir curve's slope\nincreases";
+    text = svg.append("text")
+        .attr("class", "scene2_annotation_box2")
+        .attr("transform", "translate(0," +margin.top+")")//+ margin.left + "," + height + ")")
+        //.attr("x", annotation1_width)
+        .attr("y",annotation_height)
+    text.append("tspan").attr("dx",30).attr("dy",30).attr("style","stroke:4px");
+    text.selectAll("tspan.text")
+        .data(d=> text_box.split("\n")).enter().append("tspan").text(d=>d).attr("x", annotation_width-width*(1/100))
+        .attr("dx", 10)
+        .attr("dy", 22);
+    svg.append('line')
+        .attr("class", "scene2_annotation_line2")
+        .style("stroke", "#FE7474")
+        .style("stroke-width", 10)
+        .attr("x1", annotation_width+width*(3.2/100))
+        .attr("y1", annotation_height+height*(24/100))
+        .attr("x2", annotation_width+width*(3.2/100))
+        .attr("y2", annotation_height+height*(65/100));
+    svg.selectAll(".scene2_annotation_box2").style("opacity",0);
+    svg.selectAll(".scene2_annotation_line2").style("opacity",0);
+
+    var annotation_width = width*18/100;
+    var annotation_height = 0;//height*(1/100);
+    var text_box = "Michigan rescinds stay\nat home order\nbut, since the\nstate is a national\nemergency, MI continues\nto utilize their\nnational guard";
+    text = svg.append("text")
+        .attr("class", "scene3_annotation_box1")
+        .attr("transform", "translate(0," +margin.top+")")//+ margin.left + "," + height + ")")
+        //.attr("x", annotation1_width)
+        .attr("y",annotation_height)
+    text.append("tspan").attr("dx",30).attr("dy",0).attr("style","stroke:4px");
+    text.selectAll("tspan.text")
+        .data(d=> text_box.split("\n")).enter().append("tspan").text(d=>d).attr("x", annotation_width-width*(1/100))
+        .attr("dx", 10)
+        .attr("dy", 15);
+    svg.append('line')
+        .attr("class", "scene3_annotation_line1")
+        .style("stroke", "lightblue")
+        .style("stroke-width", 10)
+        .attr("x1", annotation_width)//+width*(1/100))
+        .attr("y1", annotation_height+height*(24/100))
+        .attr("x2", annotation_width)//+width*(1/100))
+        .attr("y2", annotation_height+height*(32/100));
+    svg.append('line')
+        .attr("class", "scene3_annotation_line1")
+        .style("stroke", "lightblue")
+        .style("stroke-width", 10)
+        .attr("x1", annotation_width+width*(4.3/100))
+        .attr("y1", annotation_height+height*(24/100))
+        .attr("x2", annotation_width+width*(4.3/100))
+        .attr("y2", annotation_height+height*(32/100));
+    svg.selectAll(".scene3_annotation_box1").style("opacity",0);
+    svg.selectAll(".scene3_annotation_line1").style("opacity",0);
+
+    var annotation_width = width*53.4/100;
+    var annotation_height = height*(30/100);
+    var text_box = "Ohio makes some\nquestionable decisions as\ntheir infection rate\nclimbs";
+    text = svg.append("text")
+        .attr("class", "scene3_annotation_box2")
+        .attr("transform", "translate(0," +margin.top+")")//+ margin.left + "," + height + ")")
+        //.attr("x", annotation1_width)
+        .attr("y",annotation_height)
+    text.append("tspan").attr("dx",30).attr("dy",0).attr("style","stroke:4px");
+    text.selectAll("tspan.text")
+        .data(d=> text_box.split("\n")).enter().append("tspan").text(d=>d).attr("x", annotation_width-width*(1/100))
+        .attr("dx", 10)
+        .attr("dy", 15);
+    svg.append('line')
+        .attr("class", "scene3_annotation_line2")
+        .style("stroke", "#FE7474")
+        .style("stroke-width", 10)
+        .attr("x1", annotation_width)//+width*(1/100))
+        .attr("y1", annotation_height+height*(18/100))
+        .attr("x2", annotation_width)//+width*(1/100))
+        .attr("y2", annotation_height+height*(36/100));
+    svg.append('line')
+        .attr("class", "scene3_annotation_line2")
+        .style("stroke", "#FE7474")
+        .style("stroke-width", 10)
+        .attr("x1", annotation_width)//+width*(1/100))
+        .attr("y1", annotation_height+height*(18/100))
+        .attr("x2", annotation_width+width*(25/100))
+        .attr("y2", annotation_height+height*(19/100));
+    svg.selectAll(".scene3_annotation_box2").style("opacity",0);
+    svg.selectAll(".scene3_annotation_line2").style("opacity",0);
     //-----------------SVG PLOT DATA AND DOTS----------------
     //******************************************************************************************************************
 
-    //       .on("mousemove", mousemove);
-
-    //   var focus = svg.append("g")
-    //       .attr("class", "focus")
-    //       .style("display", "none");
-
-    //   focus.append("circle")
-    //       .attr("r", 4.5);
-
-    //   focus.append("text")
-    //       .attr("x", 9)
-    //       .attr("dy", ".35em");
-
-    //   svg.append("rect")
-    //       .attr("class", "overlay")
-    //       .attr("width", width)
-    //       .attr("height", height)
-    //       .on("mouseover", function() { focus.style("display", null); })
-    //       .on("mouseout", function() { focus.style("display", "none"); })
-    //       .on("mousemove", mousemove);
-
-    //   function mousemove() {
-    //     var x0 = x.invert(d3.mouse(this)[0]),
-    //         i = bisectDate(data, x0, 1),
-    //         d0 = data[i - 1],
-    //         d1 = data[i],
-    //         d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-    //     focus.attr("transform", "translate(" + x(d.date) + "," + y(d.close) + ")");
-    //     focus.select("text").text(d);
-    //   }
-    //-----------------BOTTOM ELEMENT - TIMELINE----------------
-    //Bottom scale
-    //min_date_month = 2;
-    //min_date_day = 9;
-    //max_date_month = 6;
-    //max_date_day = 8;
-    //var xBrush = d3.brushX()
-    //    .extent([[0,0],[timeline_svg_width,timeline_svg_height]])//[[margin.left,margin.top],[timeline_svg_width-margin.right,timeline_svg_height+margin.top]])
-    //    .on("start brush end", brushed);
-    //var min_date = new Date(2020,min_date_month,min_date_day),
-    //    max_date = new Date(2020,max_date_month,max_date_day);
-
-    //var margin = {top: 50, right: 50, bottom: 50, left: 100}
-    //   , width = graph_width - margin.left - margin.right //window.innerWidth - margin.left - margin.right // Use the window's width
-    //  , height = graph_height;//window.innerHeight - margin.top - margin.bottom; // Use the window's height
-
-    //var tsvg = d3.select("body").select("svg")//.select("svg").attr("class","svg2")
-    //.attr("width", timeline_svg_width+margin.left+margin.right)
-    //.attr("height", timeline_svg_height+margin.top+margin.bottom)
     svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top+margin.bottom +height + ")");
     svg.append("rect")
@@ -1221,28 +1172,18 @@
         .attr("y",margin.top+margin.bottom +height)
         .attr("width",timeline_svg_width)
         .attr("height",timeline_svg_height)
-    //.append("rect")
-    //.attr("class","botrect")
-    //.attr("x",0)
-    //.attr("y",0)
-    //.attr("width",timeline_svg_width/2)
-    //.attr("height",timeline_svg_height/2)
-    //.append("g")
-    //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-    //.append("g")
-    //.attr("class","brush")
-    //.call(xBrush);
+
 
 
 
     var tohtScale = d3.scaleTime()
-        .domain([min_date,max_date])//d3.extent(oh_dates, function(d) { return new Date(oh_dates);}))
+        .domain([min_date,max_date])
         .range([0, timeline_svg_width]);
     ltAxis_generator = d3.axisLeft(timelineYScale);
     tAxis_generator = d3.axisBottom(xScale);
     tsAxis_generator = d3.axisBottom(tohtScale);
     tAxis_generator.ticks(4);
-    tAxis_generator.tickValues([0,24,77,123]);//[min_date,new Date(2020,3,2),new Date(2020,4,25),max_date]);
+    tAxis_generator.tickValues([0,24,77,123]);
     let tickLabels= ['Phase 1 Starts March','Phase 2 Starts April 2nd','Phase 3 Starts May 25',' '];
     tAxis_generator.tickFormat((d,i) => tickLabels[i]);
     tAxis_generator.tickSize(timeline_svg_height*-1);
@@ -1255,12 +1196,8 @@
     tAxis = svg.append("g")
         .attr("class", "baxis")
         .attr("transform", "translate(0," + (height + timeline_svg_height + margin.top+margin.bottom) + ")")
-        //.attr("transform", "translate(" + margin.right + "," + timeline_svg_height*.8 + ")") //was 2 not 1.1
-        //.attr("transform","translate(0," + margin.right + ")")
-        //.call(d3.axisBottom(//xScale));
-        .call(tAxis_generator); //xScale)); // Create an axis component with d3.axisBottom
-    //tAxis.select(".tick text").attr("text-anchor","start");
-    //tAxis.attr("transform",'translate(${0},${height})');
+
+        .call(tAxis_generator);
     svg.append("g")
         .attr("class", "blaxis")
         .attr("transform", "translate(0," + (height + margin.top + margin.bottom) + ")")
@@ -1303,35 +1240,6 @@
         .on("mousemove", mousemove)
         .on("mouseleave", mouseleave);
 
-    //.tickArguments([1]);
-    //.tickFormat(d3.timeFormat("%mm-%dd-%YYYY"))
-    //.ticks(122);
-    //tsvg.call(d3.brushX()).on("start end", updateChart).move([[0,0],[100,100]]);
-    //.extent(0,200)); //[ [0, 0], [graph_width,graph_height]));//-margin.bottom], [graph_width,graph_height]]));
-    //var brushRect = d3.select(".svgrectangle")
-    //    .attr("width", 100)
-    //   .attr("height", 500)
-    //    .append("g")
-    //tsvg.attr("transform","translate(0,0)").append("g").attr("class","brush").call(xBrush);
 
-    //tsvg.append("g").call(xBrush);
-    //tAxis.call(xBrush)
-    //.call(xBrush.move, [0, 100]);
-    //function brushed() {
-    //    const selection = d3.event.selection;
-    //   if (selection==null) {
-    //       const [mx] = d3.mouse(this);
-    //       d3.select(this).call(brush.move, [mx,mx]);
-    //       return;
-    //   }
-    //   const sx = selection.map(x.invert);
-    //   circle.attr("stroke", d=> sx[0] <= d && d <= sx[1] ? "red" : null);
-    //   d3.select(this).call(brushHandle,selection);
-    //}
-
-
-</script>
-
-<script>
-    // 1 JUN Michigan Opens state PHASE 4 with business opening - 7 days later their have their largest increase yet
+    //created by ben kedo
 </script>

@@ -169,6 +169,27 @@
     .scene2_annotation_line1 {
         stroke:black;
     }
+    .scene2_annotation_box2 {
+        font: 14px sans-serif;
+        stroke:black;
+    }
+    .scene2_annotation_line2 {
+        stroke:black;
+    }
+    .scene3_annotation_box1 {
+        font: 14px sans-serif;
+        stroke:black;
+    }
+    .scene3_annotation_line1 {
+        stroke:black;
+    }
+    .scene3_annotation_box2 {
+        font: 14px sans-serif;
+        stroke:black;
+    }
+    .scene3_annotation_line2 {
+        stroke:black;
+    }
 
 </style>
 
@@ -248,6 +269,12 @@
         svg.selectAll(".scene1_annotation_line2").style("opacity",0);
         svg.selectAll(".scene2_annotation_box1").style("opacity",0);
         svg.selectAll(".scene2_annotation_line1").style("opacity",0);
+        svg.selectAll(".scene2_annotation_box2").style("opacity",0);
+        svg.selectAll(".scene2_annotation_line2").style("opacity",0);
+        svg.selectAll(".scene3_annotation_box1").style("opacity",0);
+        svg.selectAll(".scene3_annotation_line1").style("opacity",0);
+        svg.selectAll(".scene3_annotation_box2").style("opacity",0);
+        svg.selectAll(".scene3_annotation_line2").style("opacity",0);
         //var temp_min = newDate(min_date_month,min_date_day,start);
         //var temp_max = newDate(min_date_month,min_date_day,end);//newDate(max_date_month,max_date_day,end);
         //var min_date_month = temp_min.m;
@@ -541,6 +568,8 @@
                 .attr("cy", 0);
             svg.selectAll(".scene2_annotation_box1").style("opacity",1);
             svg.selectAll(".scene2_annotation_line1").style("opacity",1);
+            svg.selectAll(".scene2_annotation_box2").style("opacity",1);
+            svg.selectAll(".scene2_annotation_line2").style("opacity",1);
         }
         else if (i==3) {
             svg.selectAll(".ohdot3").duration(duration).attr("cx", function(d, i) { return xAxis(oh_KE_numdates3[i])})//xScale(i) })
@@ -555,6 +584,10 @@
                 .attr("cy", 0);
             svg.selectAll(".midot1").duration(duration).attr("cx", 0)
                 .attr("cy", 0);
+            svg.selectAll(".scene3_annotation_box1").style("opacity",1);
+            svg.selectAll(".scene3_annotation_line1").style("opacity",1);
+            svg.selectAll(".scene3_annotation_box2").style("opacity",1);
+            svg.selectAll(".scene3_annotation_line2").style("opacity",1);
         }
         else if (i==4) {
             svg.selectAll(".overall_annotation_box1").style("opacity",1);
@@ -1161,6 +1194,94 @@
         .attr("y2", annotation_height+height*(52/100));
     svg.selectAll(".scene2_annotation_box1").style("opacity",0);
     svg.selectAll(".scene2_annotation_line1").style("opacity",0);
+
+    var annotation_width = width*45.8/100;
+    var annotation_height = height/20;
+    var text_box = "Ohio Governor makes\nmask optional and\ntheir curve's slope\nincreases";
+    text = svg.append("text")
+        .attr("class", "scene2_annotation_box2")
+        .attr("transform", "translate(0," +margin.top+")")//+ margin.left + "," + height + ")")
+        //.attr("x", annotation1_width)
+        .attr("y",annotation_height)
+    text.append("tspan").attr("dx",30).attr("dy",30).attr("style","stroke:4px");
+    text.selectAll("tspan.text")
+        .data(d=> text_box.split("\n")).enter().append("tspan").text(d=>d).attr("x", annotation_width-width*(1/100))
+        .attr("dx", 10)
+        .attr("dy", 22);
+    svg.append('line')
+        .attr("class", "scene2_annotation_line2")
+        .style("stroke", "#FE7474")
+        .style("stroke-width", 10)
+        .attr("x1", annotation_width+width*(3.2/100))
+        .attr("y1", annotation_height+height*(24/100))
+        .attr("x2", annotation_width+width*(3.2/100))
+        .attr("y2", annotation_height+height*(65/100));
+    svg.selectAll(".scene2_annotation_box2").style("opacity",0);
+    svg.selectAll(".scene2_annotation_line2").style("opacity",0);
+
+    var annotation_width = width*18/100;
+    var annotation_height = 0;//height*(1/100);
+    var text_box = "Michigan rescinds stay\nat home order\nbut, since the\nstate is a national\nemergency, MI continues\nto utilize their\nnational guard";
+    text = svg.append("text")
+        .attr("class", "scene3_annotation_box1")
+        .attr("transform", "translate(0," +margin.top+")")//+ margin.left + "," + height + ")")
+        //.attr("x", annotation1_width)
+        .attr("y",annotation_height)
+    text.append("tspan").attr("dx",30).attr("dy",0).attr("style","stroke:4px");
+    text.selectAll("tspan.text")
+        .data(d=> text_box.split("\n")).enter().append("tspan").text(d=>d).attr("x", annotation_width-width*(1/100))
+        .attr("dx", 10)
+        .attr("dy", 15);
+    svg.append('line')
+        .attr("class", "scene3_annotation_line1")
+        .style("stroke", "lightblue")
+        .style("stroke-width", 10)
+        .attr("x1", annotation_width)//+width*(1/100))
+        .attr("y1", annotation_height+height*(24/100))
+        .attr("x2", annotation_width)//+width*(1/100))
+        .attr("y2", annotation_height+height*(32/100));
+    svg.append('line')
+        .attr("class", "scene3_annotation_line1")
+        .style("stroke", "lightblue")
+        .style("stroke-width", 10)
+        .attr("x1", annotation_width+width*(4.3/100))
+        .attr("y1", annotation_height+height*(24/100))
+        .attr("x2", annotation_width+width*(4.3/100))
+        .attr("y2", annotation_height+height*(32/100));
+    svg.selectAll(".scene3_annotation_box1").style("opacity",0);
+    svg.selectAll(".scene3_annotation_line1").style("opacity",0);
+
+    var annotation_width = width*53.4/100;
+    var annotation_height = height*(30/100);
+    var text_box = "Ohio makes some\nquestionable decisions as\ntheir infection rate\nclimbs";
+    text = svg.append("text")
+        .attr("class", "scene3_annotation_box2")
+        .attr("transform", "translate(0," +margin.top+")")//+ margin.left + "," + height + ")")
+        //.attr("x", annotation1_width)
+        .attr("y",annotation_height)
+    text.append("tspan").attr("dx",30).attr("dy",0).attr("style","stroke:4px");
+    text.selectAll("tspan.text")
+        .data(d=> text_box.split("\n")).enter().append("tspan").text(d=>d).attr("x", annotation_width-width*(1/100))
+        .attr("dx", 10)
+        .attr("dy", 15);
+    svg.append('line')
+        .attr("class", "scene3_annotation_line2")
+        .style("stroke", "#FE7474")
+        .style("stroke-width", 10)
+        .attr("x1", annotation_width)//+width*(1/100))
+        .attr("y1", annotation_height+height*(18/100))
+        .attr("x2", annotation_width)//+width*(1/100))
+        .attr("y2", annotation_height+height*(36/100));
+    svg.append('line')
+        .attr("class", "scene3_annotation_line2")
+        .style("stroke", "#FE7474")
+        .style("stroke-width", 10)
+        .attr("x1", annotation_width)//+width*(1/100))
+        .attr("y1", annotation_height+height*(18/100))
+        .attr("x2", annotation_width+width*(25/100))
+        .attr("y2", annotation_height+height*(19/100));
+    svg.selectAll(".scene3_annotation_box2").style("opacity",0);
+    svg.selectAll(".scene3_annotation_line2").style("opacity",0);
     //-----------------SVG PLOT DATA AND DOTS----------------
     //******************************************************************************************************************
 
