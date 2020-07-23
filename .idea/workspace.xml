@@ -27,7 +27,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3ebc3818-f160-489e-8ceb-6726723ae423" name="Default Changelist" comment="final">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/d3-geomap/line_plot2.html" beforeDir="false" afterPath="$PROJECT_DIR$/d3-geomap/line_plot2.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +85,7 @@
       <updated>1594578751952</updated>
       <workItem from="1594578755847" duration="5382000" />
       <workItem from="1594772769552" duration="40507000" />
-      <workItem from="1595197689146" duration="48866000" />
+      <workItem from="1595197689146" duration="52667000" />
     </task>
     <task id="LOCAL-00001" summary="test1">
       <created>1594579239963</created>
@@ -137,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595389477933</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="final">
+      <created>1595464419731</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1595464419731</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,10 +203,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="872" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1594606788883" />
-    <state x="1089" y="613" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595388492118">
+    <state x="1089" y="613" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595464504282">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1089" y="613" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1595388492118" />
+    <state x="1089" y="613" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1595464504282" />
     <state x="1067" y="601" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1594606618308">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

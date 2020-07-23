@@ -132,6 +132,7 @@
     .button:hover {
         background-color: #4CAF50; /* Green */
 
+
     }
     .overall_annotation_box1 {
         font: 14px sans-serif;
@@ -190,6 +191,10 @@
     .scene3_annotation_line2 {
         stroke:black;
     }
+    .first {
+
+        border: 4px solid;
+    }
 
 </style>
 
@@ -199,8 +204,9 @@
     <u>A tale of two states - COVID-19 Ohio/Michigan Comparison</u>
 </p>
 <p style="font: 32px sans-serif" align="left">
+    <BR><BR>As a native Ohioan I was curious about the differences between Ohio and Michigan's COVID-19 response.
     <BR><BR>Executive Summary: In the first half of 2020, two states, roughly equal in size and population, were caught off guard by COVID-19. Both had population centers impacted, although Michigan's Detroit had a more aggressive initial spread.With National Support, Michigan was able to provide free test sites, compensate its people and business, utilize the National Guard to assist the local Governments, and ultimately get control of the spread of the virus.On the other hand, Ohio had a smaller initial problem set and, like Michigan, took measures to ensure businesses were shut down but did not install as many controls as its neighbor. Ultimately, Ohio saw the contagion spread at an alarming rate with no sign of stopping. The State, following the Federal Government's guidance, is looking at ways to move forward by opening schools and businesses without taking safety precautions.
-    <BR><BR>Our story is told in four parts.  The first view shows the overall number of cases over time for each State.  Each subsequent picture, labeled "Phase 1," "Phase 2," and "Phase 3," marks a distinct period and policy for each State.The indicator bubbles provide additional details to help demonstrate each State's mitigation procedures, and the line chart shows its relative effectiveness.
+    <BR><BR>I illustrate the response in four parts.  The first view shows the overall number of cases over time for each State.  Each subsequent picture, labeled "Phase 1," "Phase 2," and "Phase 3," marks a distinct period and policy for each State.The indicator bubbles provide additional details to help demonstrate each State's mitigation procedures, and the line chart shows its relative effectiveness.
     <BR><BR>
     <BR><BR>
     <BR>
@@ -209,7 +215,7 @@
     <button class="button" type="button" onclick="changeScene(1)">Phase 1</button>
     <button class="button" type="button" onclick="changeScene(2)">Phase 2</button>
     <button class="button" type="button" onclick="changeScene(3)">Phase 3</button>
-    <button class="button" type="button" onclick="changeScene(4)">Overview</button>
+    <button class="button first" type="button" onclick="changeScene(4)">Overview</button>
 </p>
 
 <body align = "center">
@@ -277,6 +283,11 @@
         svg.selectAll(".scene3_annotation_line1").style("opacity",0);
         svg.selectAll(".scene3_annotation_box2").style("opacity",0);
         svg.selectAll(".scene3_annotation_line2").style("opacity",0);
+        svg.selectAll(".overview_annotation_box3").style("opacity",0);
+        svg.selectAll(".scene1_annotation_box3").style("opacity",0);
+        svg.selectAll(".scene2_annotation_box3").style("opacity",0);
+        svg.selectAll(".scene3_annotation_box3").style("opacity",0);
+        d3.selectAll(".button").style("border","2px solid");
 
         var min_date_month = 2;
         var min_date_day = 9;
@@ -509,6 +520,7 @@
             svg.selectAll(".scene1_annotation_line1").style("opacity",1);
             svg.selectAll(".scene1_annotation_box2").style("opacity",1);
             svg.selectAll(".scene1_annotation_line2").style("opacity",1);
+            svg.selectAll(".scene1_annotation_box3").style("opacity",1);
         }
         else if (i==2) {
             svg.selectAll(".ohdot2").duration(duration).attr("cx", function(d, i) { return xAxis(oh_KE_numdates2[i])})//xScale(i) })
@@ -527,6 +539,7 @@
             svg.selectAll(".scene2_annotation_line1").style("opacity",1);
             svg.selectAll(".scene2_annotation_box2").style("opacity",1);
             svg.selectAll(".scene2_annotation_line2").style("opacity",1);
+            svg.selectAll(".scene2_annotation_box3").style("opacity",1);
         }
         else if (i==3) {
             svg.selectAll(".ohdot3").duration(duration).attr("cx", function(d, i) { return xAxis(oh_KE_numdates3[i])})//xScale(i) })
@@ -545,12 +558,14 @@
             svg.selectAll(".scene3_annotation_line1").style("opacity",1);
             svg.selectAll(".scene3_annotation_box2").style("opacity",1);
             svg.selectAll(".scene3_annotation_line2").style("opacity",1);
+            svg.selectAll(".scene3_annotation_box3").style("opacity",1);
         }
         else if (i==4) {
             svg.selectAll(".overall_annotation_box1").style("opacity",1);
             svg.selectAll(".overall_annotation_line1").style("opacity",1);
             svg.selectAll(".overall_annotation_box2").style("opacity",1);
             svg.selectAll(".overall_annotation_line2").style("opacity",1);
+            svg.selectAll(".overview_annotation_box3").style("opacity",1);
             svg.selectAll(".ohdot1").duration(duration).attr("cx", function(d, i) { return xAxis(oh_KE_numdates1[i])})//xScale(i) })
                 .attr("cy", function(d) { return yScale(d)});
             svg.selectAll(".ohdot2").duration(duration).attr("cx", function(d, i) { return xAxis(oh_KE_numdates2[i])})//xScale(i) })
@@ -1099,7 +1114,7 @@
     svg.selectAll(".scene2_annotation_line2").style("opacity",0);
 
     var annotation_width = width*18/100;
-    var annotation_height = 0;//height*(1/100);
+    var annotation_height = height*(1/100);
     var text_box = "Michigan rescinds stay\nat home order\nbut, since the\nstate is a national\nemergency, MI continues\nto utilize their\nnational guard";
     text = svg.append("text")
         .attr("class", "scene3_annotation_box1")
@@ -1161,6 +1176,86 @@
         .attr("y2", annotation_height+height*(19/100));
     svg.selectAll(".scene3_annotation_box2").style("opacity",0);
     svg.selectAll(".scene3_annotation_line2").style("opacity",0);
+
+    var annotation_width = width*5/100;
+    var annotation_height = 0;//height*(30/100);
+    var text_box = "Overview\nThis chart has three separate phases\nEach phase shows a focused portion of this overall data\nOhio has an effective initial response but ends up with an aggressive COVID infection rate\nMichigan has a massive initial spread but by phase three starts to get it under control";
+    text = svg.append("text")
+        .attr("class", "overview_annotation_box3")
+        .attr("transform", "translate(0," +margin.top+")")//+ margin.left + "," + height + ")")
+        //.attr("x", annotation1_width)
+        .attr("y",annotation_height-height*(15/100))
+
+    text.append("tspan").attr("dx",30).attr("dy",30).attr("style","stroke:4px");
+    text.selectAll("tspan.text")
+        .data(d=> text_box.split("\n")).enter().append("tspan").text(d=>d).attr("x", annotation_width-width*(1/100))
+        .attr("dx", 10)
+        .attr("dy", 22);
+    //svg.selectAll(".overview_annotation_box3").style("opacity",0);
+    var annotation_width = width*5/100;
+    var annotation_height = 0;//height*(30/100);
+    var text_box = "Phase 1\nBoth states are unprepared for the virus with respect to administrative controls and historical evidence to inform their decisions\nOhio is able to take a standard response to great effect by instituting a stay at home order and shutting down schools and businesses\nMichigan has to do what Ohio does and seeks Federal Aid\nIn phase three the systems initiated in this phase will assist Michigan in slowing down the spread";
+    text = svg.append("text")
+        .attr("class", "scene1_annotation_box3")
+        .attr("transform", "translate(0," +margin.top+")")//+ margin.left + "," + height + ")")
+        //.attr("x", annotation1_width)
+        .attr("y",annotation_height-height*(15/100))
+
+    text.append("tspan").attr("dx",30).attr("dy",30).attr("style","stroke:4px");
+    text.selectAll("tspan.text")
+        .data(d=> text_box.split("\n")).enter().append("tspan").text(d=>d).attr("x", annotation_width-width*(1/100))
+        .attr("dx", 10)
+        .attr("dy", 22);
+    svg.selectAll(".scene1_annotation_box3").style("opacity",0);
+    var annotation_width = width*5/100;
+    var annotation_height = 0;//height*(30/100);
+    var text_box = "Phase 1\nBoth states are unprepared for the virus with respect to administrative controls and historical evidence to inform their decisions\nOhio is able to take a standard response to great effect by instituting a stay at home order and shutting down schools and businesses\nMichigan has to do what Ohio does and seeks Federal Aid\nIn phase three the systems initiated in this phase will assist Michigan in slowing down the spread";
+    text = svg.append("text")
+        .attr("class", "scene1_annotation_box3")
+        .attr("transform", "translate(0," +margin.top+")")//+ margin.left + "," + height + ")")
+        //.attr("x", annotation1_width)
+        .attr("y",annotation_height-height*(15/100))
+
+    text.append("tspan").attr("dx",30).attr("dy",30).attr("style","stroke:4px");
+    text.selectAll("tspan.text")
+        .data(d=> text_box.split("\n")).enter().append("tspan").text(d=>d).attr("x", annotation_width-width*(1/100))
+        .attr("dx", 10)
+        .attr("dy", 22);
+    svg.selectAll(".scene1_annotation_box3").style("opacity",0);
+
+    var annotation_width = width-width*50/100;
+    var annotation_height = height-height*18/100;//height*(30/100);
+    var text_box = "Phase 2\nMichigan does three things which greatly help them through phase 2, the shutdown phase\nMichigan converts their factories to produce medical equipment, they open free test sites, and their national\nguard assists poorer communities. These controls decrease the slow of their COVID-19 infection rate\nOhio's rate steadily increases during this phase\nDays after announcing their plans to open the state gains 5k new cases which\nnearly doubles the number of COVID-19 positive cases\nInstead of using this data to signal the need for increase controls they open businesses and refuse to require masks to be worn.";
+    text = svg.append("text")
+        .attr("class", "scene2_annotation_box3")
+        .attr("transform", "translate(0," +margin.top+")")//+ margin.left + "," + height + ")")
+        //.attr("x", annotation1_width)
+        .attr("y",annotation_height-height*(15/100))
+
+    text.append("tspan").attr("dx",30).attr("dy",30).attr("style","stroke:4px");
+    text.selectAll("tspan.text")
+        .data(d=> text_box.split("\n")).enter().append("tspan").text(d=>d).attr("x", annotation_width-width*(1/100))
+        .attr("dx", 10)
+        .attr("dy", 22);
+    svg.selectAll(".scene2_annotation_box3").style("opacity",0);
+
+    var annotation_width = width*5/100;
+    var annotation_height = 0;//height*(30/100);
+    var text_box = "Phase 3\nPreviously two diverging lines begin to converge\nMichigan's infection rate decreases as they open businesses but maintain certain protective measuress like indoor masks\nOhio's rate increases in this phase as, everyday, they see the biggest number of new cases\nThe data points at the end of Ohio's line shows additional freedoms such as opening larger public venues which will likely contribute to a greater infection rate";
+
+    text = svg.append("text")
+        .attr("class", "scene3_annotation_box3")
+        .attr("transform", "translate(0," +margin.top+")")//+ margin.left + "," + height + ")")
+        //.attr("x", annotation1_width)
+        .attr("y",annotation_height-height*(15/100))
+
+    text.append("tspan").attr("dx",30).attr("dy",30).attr("style","stroke:4px");
+    text.selectAll("tspan.text")
+        .data(d=> text_box.split("\n")).enter().append("tspan").text(d=>d).attr("x", annotation_width-width*(1/100))
+        .attr("dx", 10)
+        .attr("dy", 22);
+    svg.selectAll(".scene3_annotation_box3").style("opacity",0);
+
     //-----------------SVG PLOT DATA AND DOTS----------------
     //******************************************************************************************************************
 
