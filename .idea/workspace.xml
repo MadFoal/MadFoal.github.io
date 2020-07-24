@@ -25,7 +25,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ebc3818-f160-489e-8ceb-6726723ae423" name="Default Changelist" comment="final_3">
+    <list default="true" id="3ebc3818-f160-489e-8ceb-6726723ae423" name="Default Changelist" comment="final_4">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
@@ -86,7 +86,7 @@
       <workItem from="1594578755847" duration="5382000" />
       <workItem from="1594772769552" duration="40507000" />
       <workItem from="1595197689146" duration="53440000" />
-      <workItem from="1595539418853" duration="2396000" />
+      <workItem from="1595539418853" duration="4404000" />
     </task>
     <task id="LOCAL-00001" summary="test1">
       <created>1594579239963</created>
@@ -158,7 +158,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595470153334</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="final_4">
+      <created>1595548448274</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1595548448274</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,7 +200,8 @@
     <MESSAGE value="final" />
     <MESSAGE value="final_2" />
     <MESSAGE value="final_3" />
-    <option name="LAST_COMMIT_MESSAGE" value="final_3" />
+    <MESSAGE value="final_4" />
+    <option name="LAST_COMMIT_MESSAGE" value="final_4" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1165" y="562" width="876" height="502" key="#Notifications" timestamp="1594606326969">
