@@ -1,0 +1,1809 @@
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+
+<style type="text/css">
+    .line {
+        fill: none;
+        stroke: #ffab00;
+        stroke-width: 3;
+    }
+
+    .miline {
+        fill: none;
+        stroke: #00274C;
+        stroke-width: 3;
+    }
+
+    .ohline {
+        fill: none;
+        stroke: #fc0e06;
+        stroke-width: 1;
+    }
+
+    .overlay {
+        fill: none;
+        pointer-events: all;
+    }
+
+    .dot {
+        fill: #ffab00;
+        stroke: #fff;
+    }
+
+    .ohdot {
+        fill: #F68076;
+        stroke: #fff;
+    }
+
+    .ohdot1 {
+        fill: #F68076;
+        stroke: #fff;
+    }
+
+    .ohdot2 {
+        fill: #F68076;
+        stroke: #fff;
+    }
+
+    .ohdot3 {
+        fill: #F68076;
+        stroke: #fff;
+    }
+
+    .ohdot4 {
+        fill: #F68076;
+        stroke: #fff;
+    }
+
+    .midot {
+        fill: #33ECFF;
+        stroke: #fff;
+    }
+
+    .midot1 {
+        fill: #33ECFF;
+        stroke: #fff;
+    }
+
+    .midot2 {
+        fill: #33ECFF;
+        stroke: #fff;
+    }
+
+    .midot3 {
+        fill: #33ECFF;
+        stroke: #fff;
+    }
+
+    .midot4 {
+        fill: #33ECFF;
+        stroke: #fff;
+    }
+
+    .focus circle {
+        fill: none;
+        stroke: steelblue;
+    }
+
+    .baxis {
+        font: 14px sans-serif;
+        text-anchor: start;
+        stroke: black;
+
+    }
+
+    .blaxis {
+        font: 14px sans-serif;
+        text-anchor: middle;
+        stroke: black;
+    }
+
+    .test {
+        writing-mode: vertical-lr;
+        text-anchor: middle;
+
+    }
+
+    .axis {
+        font: 12px sans-serif;
+
+    }
+
+    .yaxis_label {
+        font: 24px sans-serif;
+        text-anchor: middle;
+        stroke: black;
+    }
+
+    .xaxis {
+        font: 24px sans-serif;
+        stroke: black;
+
+    }
+
+    .yaxis {
+        font: 24px sans-serif;
+        stroke: black;
+        text-anchor: middle;
+    }
+
+    .botrect {
+        fill: transparent;
+        fill-opacity: 0.2;
+        stroke-opacity: 0.5;
+        stroke: black;
+        stroke-width: 4px;
+    }
+
+    .tooltip {
+        fill-opacity: 0.2;
+        stroke-opacity: 0.5;
+        stroke: black;
+        stroke-width: 4px;
+        font: 16px sans-serif;
+    }
+
+    .button {
+        transition-duration: 1s;
+        background-color: #FFFFFF;
+        stroke: black;
+        height: 75px;
+
+        font: 21px sans-serif;
+    }
+    .button2 {
+        transition-duration: 1s;
+        background-color: #FFFFFF;
+        stroke: black;
+        width: 250px;
+        height: 75px;
+        margin: 0;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        font: 21px sans-serif;
+    }
+
+    .button:hover {
+        background-color: #4CAF50; /* Green */
+
+
+    }
+
+    .overall_annotation_box1 {
+        font: 14px sans-serif;
+        stroke: black;
+    }
+
+    .overall_annotation_line1 {
+        stroke: black;
+    }
+
+    .overall_annotation_box2 {
+        font: 14px sans-serif;
+        stroke: black;
+    }
+
+    .overall_annotation_line2 {
+        stroke: black;
+    }
+
+    .scene1_annotation_box1 {
+        font: 14px sans-serif;
+        stroke: black;
+    }
+
+    .scene1_annotation_line1 {
+        stroke: black;
+    }
+
+    .scene1_annotation_box2 {
+        font: 14px sans-serif;
+        stroke: black;
+    }
+
+    .scene1_annotation_line2 {
+        stroke: black;
+    }
+
+    .scene2_annotation_box1 {
+        font: 14px sans-serif;
+        stroke: black;
+    }
+
+    .scene2_annotation_line1 {
+        stroke: black;
+    }
+
+    .scene2_annotation_box2 {
+        font: 14px sans-serif;
+        stroke: red;
+    }
+
+    .scene2_annotation_line2 {
+        stroke: black;
+    }
+
+    .scene3_annotation_box1 {
+        font: 14px sans-serif;
+        stroke: black;
+    }
+
+    .scene3_annotation_line1 {
+        stroke: black;
+    }
+
+    .scene3_annotation_box2 {
+        font: 14px sans-serif;
+        stroke: black;
+    }
+
+    .scene3_annotation_line2 {
+        stroke: black;
+    }
+
+    .first {
+
+        border: 4px solid;
+    }
+
+</style>
+
+<p align="center" style="font: 32px sans-serif">
+    <u>CS513 - SCIVIZ Project - Dynamic Data & Interpolation<BR>
+    Scientific Visualization tools in D3<BR>Benjamin Kedo</u>
+</p>
+
+<p align="center">
+    <button class="button" onclick="Start()" type="button">1. Regenerate Data<BR>(bigger dots = high values, smaller dots = lower values)</button><BR>
+    <button class="button" onclick="PlotContour(1)" type="button">2A. Marching Squares<BR>Single Line</button>
+    <button class="button" onclick="PlotContour(2)" type="button">2B. Marching Squares<BR>Multiple Lines</button>
+    <button class="button" onclick="PlotContour(3)" type="button">2C. Dual Marching Squares<BR>Single Line</button>
+    <button class="button" onclick="PlotContour(4)" type="button">2D. Dual Marching Squares<BR>Multiple Lines</button><BR>
+    <button class="button" onclick="AddColor(1)" type="button">3A. Color: Viridis<BR>(yellow = high, purple = low)</button>
+    <button class="button" onclick="AddColor(2)" type="button">3B. Color: Inferno<BR>(yellow = high, purple = low)</button>
+    <button class="button" onclick="AddColor(3)" type="button">3C. Color: Extended Kindlemann<BR>(pink = high, purple = low)</button>
+    <button class="button" onclick="AddColor(4)" type="button">3D. Color: Plasma<BR>(yellow = high, blue = low)</button><BR>
+    <button class="button" onclick="ChangePoints(1)" type="button">4A. Fine Adjustment<BR>Increase points</button>
+    <button class="button" onclick="ChangePoints(2)" type="button">4B. Coarse Adjustment<BR>Decrease points</button>
+
+    <BR><p>Enter value for contouring (0 to 100, default 50) <input id="ContourSingleValue" type="text" placeholder="Contour value (default is 50)"></p>
+<p>Enter an interval for multiple contour lines (0 to 100, default 10)<input id="ContourMultipleValue" type="text" placeholder="Contour value (default is 10)"></p>
+</p>
+<body align = "center">
+</body>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script>
+    window.onload = Start;
+
+//Benjamin Kedo
+// Global Variables
+let commandHistory = 0;
+const variance = 10;
+let magicnumber = 21;
+let xmax = 20;
+let xmin = 0;
+let ymax = 20;
+let ymin = 0;
+let maxDataPoints = 20;
+let zmax = 100;
+let globalArray = [];
+let globalArrayXYZ = [];
+let totalDots = 20;
+//-----------------Variables----------------
+graph_width = window.innerWidth/1.5;
+graph_height = window.innerHeight/1.2;
+var margin = {top: 50, right: 50, bottom: 50, left:50};
+var width = graph_width - margin.left - margin.right;
+var height = graph_height - margin.top - margin.bottom;
+
+//-----------------SCALES----------------
+var xScale = d3.scaleLinear()
+    .domain([xmin, xmax])
+    .range([0, graph_width-100]);
+var yScale = d3.scaleLinear()
+    .domain([ymax, ymin])
+    .range([100, graph_height]);
+var xScaleDots = d3.scaleLinear()
+    .domain([xmin, totalDots])
+    .range([0, graph_width-100]);
+var yScaleDots = d3.scaleLinear()
+    .domain([totalDots, ymin])
+    .range([100, graph_height]);
+
+    //-----------------SVG----------------
+    //Begin drawing our diagram
+
+
+let svg = d3.select("body").append("svg")
+    .attr("width", graph_width)
+    .attr("height", graph_height)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    //console.log("N is equal to " + n);
+    //******************************************************************************************************************
+    //-----------------SVG BOTTOM AXIS----------------
+    //add a bottom axis
+
+Axis_bottom_x = d3.axisBottom(xScale);
+Axis_bottom_x.ticks(maxDataPoints);
+Axis_bottom_x.tickSize(20);
+
+var xAxis_Main = svg.append("g")
+    .attr("class", "xaxis")
+    .attr("transform", "translate(0," + height +")")
+    .call(Axis_bottom_x);
+
+//-----------------SVG BOTTOM AXIS----------------
+//******************************************************************************************************************
+//-----------------SVG LEFT AXIS----------------
+//add a left axis
+Axis_bottom_y = d3.axisLeft(yScale);
+Axis_bottom_y.ticks(maxDataPoints);
+Axis_bottom_y.tickSize(20);
+var yAxis_Main = svg.append("g")
+    .attr("class","yaxis")
+    .attr("transform","translate(0," + (-1*(margin.top+margin.bottom)) + ")")
+    .call(Axis_bottom_y);
+
+    function Start() {
+        var remove = svg.selectAll("path").remove();
+        GenerateData();
+        PlotDots();
+    }
+
+    function removeItem(A, i) {
+        let cell = A.indexOf(i);
+        if (cell > -1) {
+            A.splice(cell, 1);
+        }
+        return A;
+    }
+    function GetCloseValue(shortArray, variance, maxVal) {
+        const magicShift = magicnumber;
+        let returnVal = 0.0
+        x = 0;
+        y = 0;
+        z = 0;
+        let wideShift = Math.floor(Math.random()*magicShift)
+        if (shortArray.length==0 || wideShift==0) {
+            returnVal = Math.floor(Math.random()*maxVal)+1;
+        }
+        else {
+            // try to figure out which way the data is trending
+            let valTotal = 0.0
+            for (let i = 0; i <shortArray.length; i++) {
+                valTotal = valTotal + shortArray[i]
+            }
+            valTotal = valTotal/shortArray.length;
+            let upDown = Math.random()-0.5;
+            if (upDown <= 0) {
+                returnVal =  Math.floor((valTotal)-Math.random()*variance);
+            }
+            else {
+                returnVal =  Math.floor((valTotal)+Math.random()*variance);
+            }
+
+            if (returnVal>maxVal) {
+                returnVal = maxVal;
+            }
+            else if (returnVal<0) {
+                returnVal=0;
+            }
+        }
+
+        return returnVal;
+    }
+
+    function GenerateData() {
+        // let's use 1 to 100
+        //const dim = maxDataPoints;width: 300px;
+        //const zMax = 10;
+
+        const max = zmax;
+        //Array = [[10],[10],[10],[10],[10],[10],[10],[10],[10]];
+        let xArray = [totalDots];
+        for (let i = 0; i < totalDots; i++) {
+            xArray = []
+            for (let j = 0; j < totalDots; j++) {
+                let tempVals = []
+                if (i!=0) {
+                    tempVals.push(globalArray[i-1][j]);
+                }
+
+                if (j!=0) {
+                    tempVals.push(xArray[j-1]); //[tempVals.length] = xArray[j-1]
+                }
+
+                if (j!=0 && i!=0) {
+                    tempVals.push(globalArray[i-1][j-1]);//[tempVals.length] = globalArray[i-1][j-1]
+                }
+
+                let z = Math.round(GetCloseValue(tempVals, variance, max));
+                if (z<0) {
+                    z = 0;
+                }
+                if (z>zmax) {
+                    z = zmax;
+                }
+
+                xArray[j] = z//Math.floor(Math.random()*zMax)+1;
+                if (j==NaN || i == NaN || z == NaN) {
+                    let a = 0;
+                }
+                if (j==0.5) {
+                    let a = 0
+                }
+                if (i == 0.5) {
+                    let a = 0
+                }
+                globalArrayXYZ[j+(i*totalDots)] = {"x": j, "y": i, "z":z}
+            }
+
+            globalArray[i] = xArray;    //Array[i] = xArray;
+
+        }
+
+        //console.log('test');
+        //globalArray = Array.copy;
+        //document.write(Array.toString()); // not print but instead doc write
+        //a = 0;
+        //var svg = d3.select("body");
+    }
+
+
+
+    function DisplayData() {
+        //-----------------Variables----------------
+        let graph_width = window.innerWidth / 1.5;
+        let graph_height = window.innerHeight / 1.2;
+        var margin = {top: 50, right: 50, bottom: 50, left: 50};
+        var width = graph_width - margin.left - margin.right;
+        var height = graph_height - margin.top - margin.bottom;
+
+        //-----------------SCALES----------------
+        var xScale = d3.scaleLinear()
+            .domain([xmin, xmax])
+            .range([0, graph_width - 100]);
+        var yScale = d3.scaleLinear()
+            .domain([ymax, ymin])
+            .range([100, graph_height]);
+
+        //-----------------SVG----------------
+        //Begin drawing our diagram
+
+
+        let svg = d3.select("body").append("svg")
+            .attr("width", graph_width)
+            .attr("height", graph_height)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        //console.log("N is equal to " + n);
+        //******************************************************************************************************************
+        //-----------------SVG BOTTOM AXIS----------------
+        //add a bottom axis
+
+        Axis_bottom_x = d3.axisBottom(xScale);
+        Axis_bottom_x.ticks(maxDataPoints);
+        Axis_bottom_x.tickSize(20);
+        var xAxis_Main = svg.append("g")
+            .attr("class", "xaxis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(Axis_bottom_x);
+
+        //-----------------SVG BOTTOM AXIS----------------
+        //******************************************************************************************************************
+        //-----------------SVG LEFT AXIS----------------
+        //add a left axis
+        Axis_bottom_y = d3.axisLeft(yScale);
+        Axis_bottom_y.ticks(maxDataPoints);
+        Axis_bottom_y.tickSize(20);
+        var yAxis_Main = svg.append("g")
+            .attr("class", "yaxis")
+            .attr("transform", "translate(0," + (-1 * (margin.top + margin.bottom)) + ")")
+            .call(Axis_bottom_y);
+
+
+        //-----------------Create our datasets----------------
+        //var heightData = d3.range(maxDataPoints).map(function(d,i) { return {"z": (globalArrayXYZ[i][x][y]) } });
+    }
+    function PlotAxis() {
+        Axis_bottom_x = d3.axisBottom(xScale);
+        Axis_bottom_x.ticks(maxDataPoints);
+        Axis_bottom_x.tickSize(20);
+
+        var xAxis_Main = svg.append("g")
+            .attr("class", "xaxis")
+            .attr("transform", "translate(0," + height +")")
+            .call(Axis_bottom_x);
+
+        //-----------------SVG BOTTOM AXIS----------------
+        //******************************************************************************************************************
+        //-----------------SVG LEFT AXIS----------------
+        //add a left axis
+        Axis_bottom_y = d3.axisLeft(yScale);
+        Axis_bottom_y.ticks(maxDataPoints);
+        Axis_bottom_y.tickSize(20);
+        var yAxis_Main = svg.append("g")
+            .attr("class","yaxis")
+            .attr("transform","translate(0," + (-1*(margin.top+margin.bottom)) + ")")
+            .call(Axis_bottom_y);
+        //******************************************************************************************************************
+        //-----------------Plot values----------------
+        // Add circles for our datapoints - NEEDS UPDATING
+
+        Axis_bottom_x = d3.axisBottom(xScale);
+        Axis_bottom_x.ticks(maxDataPoints);
+        Axis_bottom_x.tickSize(20);
+        var xAxis_Main = svg.append("g")
+            .attr("class", "xaxis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(Axis_bottom_x);
+
+        //-----------------SVG BOTTOM AXIS----------------
+        //******************************************************************************************************************
+        //-----------------SVG LEFT AXIS----------------
+        //add a left axis
+        Axis_bottom_y = d3.axisLeft(yScale);
+        Axis_bottom_y.ticks(maxDataPoints);
+        Axis_bottom_y.tickSize(20);
+        var yAxis_Main = svg.append("g")
+            .attr("class", "yaxis")
+            .attr("transform", "translate(0," + (-1 * (margin.top + margin.bottom)) + ")")
+            .call(Axis_bottom_y);
+    }
+
+    function PlotDots() {
+        let tempData = [];
+        globalArrayXYZ.forEach(i => tempData.push(i))
+        var remove = svg.selectAll("circle").remove();
+        remove = svg.selectAll("text").remove();
+        PlotAxis();
+
+
+        var circle = svg.selectAll("circle")
+            .data(tempData)//dataset)//dataset)
+            .enter().append("circle") // Uses the enter().append() method
+            .attr("class", "dotcircle") // Assign a class for styling
+            .attr("cx", function (d) {
+                return xScaleDots(d.x) + (((graph_width - 100) / totalDots))
+            })//xScale(i) })
+            .attr("cy", function (d) {
+                return yScaleDots(d.y) - margin.bottom - margin.top - ((graph_height - 100) / totalDots)
+            }) //yScale(d.y) })
+            .attr("r", function (d, i) {
+                return Math.sqrt(2 * tempData[i].z/(totalDots/20))
+            });
+
+/*
+        var textDots = svg.selectAll("text")
+            .data(tempData)
+            .enter()
+            .append("text")
+            .text(function (d) {
+                return d.z
+            })
+            .attr("class", "scene2_annotation_box2")
+            .attr("x", function (d) {
+                return 4 + xScaleDots(d.x) + (((graph_width - 100) / totalDots))
+            })//xScale(i) })
+            .attr("y", function (d) {
+                return 4+yScaleDots(d.y) - margin.bottom - margin.top - ((graph_height - 100) / totalDots)
+            })
+            .attr("dy", "1em");
+
+ */
+
+
+
+
+    }
+
+/*
+    function InterpolatePoints(p1, p2, cVal) {
+        // return the interpolated point between two points given the contour value
+
+        let returnVal;
+        if ((p1.z > cVal && p2.z > cVal)
+            || (p1.z <= cVal && p2.z <= cVal)) {
+            returnVal = null;
+        } else {
+            // the two point values have one over the cval and one under
+            yVal = (cVal - p1.z) / (p2.z - p1.z) * (p2.y - p1.y) + p1.y;
+            xVal = (cVal - p1.z) / (p2.z - p1.z) * (p2.x - p1.x) + p1.x;
+            returnVal = {"x": xVal, "y": yVal, "z": cVal};
+        }
+
+        return returnVal;
+    }
+
+ */
+    function DetermineReturnValMSCase(equal,greaterThan,contiguous) {
+        let returnVal = 0;
+        if (greaterThan == 4 || greaterThan == 0) {
+            if (equal == 1) {
+                returnVal = -2; // should be a single point
+            }
+            else if (equal == 2) {
+                returnVal = -3;
+            }
+            else if (equal == 3) {
+                returnVal = -4; // special case diagonal line through two points that match cval
+            }
+        } else if (greaterThan == 1 || greaterThan == 3) {
+            returnVal = 1;
+            if (greaterThan == 3) {
+                returnVal = -1
+            }
+        } else if (greaterThan == 2) {
+            returnVal = 3;
+            if (contiguous == 2) {
+                returnVal = 2;
+            }
+        }
+        return returnVal;
+
+    }
+
+    // 0 = all are in or out, 1- one in; 2- line, 3-diagonal
+    function DetermineMSCase(p1, p2, p3, p4, cVal) {
+        let pArray = [p1, p2, p3, p4];
+        let iCount = 0;
+        let equalToCVal = 0;
+        let contiguous = 0;
+        for (let i = 0; i < pArray.length; i++) {
+            if (pArray[i].z == cVal) {
+                equalToCVal++;
+
+                if (contiguous == 0) {
+                    if (i == 0) {
+                        if (pArray[3].z == cVal || pArray[1].z==cVal) {
+                            contiguous = 2;
+                        }
+                    }
+                    else if (i == 3) {
+                        if (pArray[0].z == cVal || pArray[2].z==cVal) {
+                            contiguous = 2;
+                        }
+                    }
+                    else {
+                        if (pArray[i-1].z==cVal || pArray[i+1].z==cVal) {
+                            contiguous = 2;
+                        }
+                    }
+                }
+            }
+            if (pArray[i].z >= cVal) {
+                iCount++;
+                if (contiguous == 0) {
+                    if (i == 0) {
+                        if (pArray[3].z >= cVal || pArray[1].z >= cVal) {
+                            contiguous = 2;
+                        }
+                    } else if (i == 3) {
+                        if (pArray[0].z >= cVal || pArray[2].z >= cVal) {
+                            contiguous = 2;
+                        }
+                    } else {
+                        if (pArray[i - 1].z >= cVal || pArray[i + 1].z >= cVal) {
+                            contiguous = 2;
+                        }
+                    }
+                }
+            }
+        }
+        return DetermineReturnValMSCase(equalToCVal,iCount,contiguous);
+    }
+
+    function InterpolatePoint(p1, p2, cVal) {
+        // find out if we are holding x or y still
+
+        let returnPoint = Object.create(p1);
+        returnPoint.x = p1.x;
+        returnPoint.y = p1.y;
+        returnPoint.z = cVal;
+        if (p1.x == p2.x) {
+            // change y
+            returnPoint.y = p1.y + ((cVal - p1.z) / (p2.z - p1.z) * (p2.y - p1.y));
+            returnPoint.y = Math.floor(returnPoint.y*1000)/1000;
+            if (returnPoint.y<0 || returnPoint.y>100) {
+                let a = 100;
+            }
+        } else {
+            returnPoint.x = p1.x + ((cVal - p1.z) / (p2.z - p1.z) * (p2.x - p1.x));
+            returnPoint.x = Math.floor(returnPoint.x*1000)/1000;
+            if (returnPoint.x<0 || returnPoint.x>100) {
+                let a = 100;
+            }
+        }
+        return returnPoint;
+    }
+
+    function CaseOneReturnThreePoints(p1, p2, p3, p4, cVal, highLow) {
+        let pArray = []
+        if (highLow > 0) {
+            if (p1.z >= cVal) {
+                pArray.push(p1);
+                pArray.push(p2);
+                pArray.push(p4);
+            } else if (p2.z >= cVal) {
+                pArray.push(p2);
+                pArray.push(p1);
+                pArray.push(p3);
+            } else if (p3.z >= cVal) {
+                pArray.push(p3);
+                pArray.push(p2);
+                pArray.push(p4);
+            } else { // if(p4.z>=cVal) {
+                pArray.push(p4);
+                pArray.push(p1);
+                pArray.push(p3);
+            }
+        } else {
+            if (p1.z < cVal) {
+                pArray.push(p1);
+                pArray.push(p2);
+                pArray.push(p4);
+            } else if (p2.z < cVal) {
+                pArray.push(p2);
+                pArray.push(p1);
+                pArray.push(p3);
+            } else if (p3.z < cVal) {
+                pArray.push(p3);
+                pArray.push(p2);
+                pArray.push(p4);
+            } else { // if(p4.z>=cVal) {
+                pArray.push(p4);
+                pArray.push(p1);
+                pArray.push(p3);
+            }
+        }
+        return pArray;
+    }
+
+    //return line segement(s)
+    function MarchSquare(p1, p2, p3, p4, cVal, firstPointSet, secondPointSet) {
+
+        //Determine type
+        //Return null or line segment(s)
+        let caseType = 0;
+        let pArray = [];
+        firstPointSet = []; // array of return points
+        secondPointSet = []; // secondary array of points
+
+        // Check for the common case where there are no lines through this square
+        caseType = DetermineMSCase(p1, p2, p3, p4, cVal);
+
+        if (caseType == 0) {
+            // do nothing
+            firstPointSet = []; // array of return points
+            secondPointSet = [];
+        } else if (caseType == 1 || caseType == -1) {
+
+            // should have two points
+            let pArray = CaseOneReturnThreePoints(p1, p2, p3, p4, cVal, caseType);
+            let pointOne = InterpolatePoint(pArray[0], pArray[1], cVal);
+            let pointTwo = InterpolatePoint(pArray[0], pArray[2], cVal);
+            if (pointOne.x!=pointTwo.x &&
+                pointOne.y!=pointTwo.y) {
+                firstPointSet.push(pointOne)
+                firstPointSet.push(pointTwo)
+            }
+
+            /*
+            if (pointOne.x != pointTwo.x && pointOne.y != pointTwo.y) {
+                firstPointSet.push(pointOne)
+                firstPointSet.push(pointTwo)
+            } else {
+                firstPointSet.push(pointOne)
+                firstPointSet.push(pointOne)``
+            }
+            */
+        } else if (caseType == 2) {
+            if ((p1.z >= cVal && p2.z >= cVal) || (p3.z >= cVal && p4.z >= cVal)) {
+                // draw horizontal line
+                let pointOne = InterpolatePoint(p1, p4, cVal);
+                let pointTwo = InterpolatePoint(p2, p3, cVal);
+                if (pointOne.x!=pointTwo.x &&
+                    pointOne.y!=pointTwo.y) {
+                    firstPointSet.push(pointOne)
+                    firstPointSet.push(pointTwo)
+                }
+            } else {
+                // draw a vertical line
+                let pointOne = InterpolatePoint(p1, p2, cVal);
+                let pointTwo = InterpolatePoint(p3, p4, cVal);
+
+                //let temp = [];
+                if (pointOne.x!=pointTwo.x &&
+                    pointOne.y!=pointTwo.y) {
+                    firstPointSet.push(pointOne)
+                    firstPointSet.push(pointTwo)
+                }
+
+            }
+        } else if (caseType == 3) {
+            // fun fun diagonal case
+            let centerPoint = {x:0, y:0, z:0};
+            let middlePointTwo = {x:0, y:0, z:0};
+            // find center value high or low
+            centerPoint.x = p1.x+0.5;
+            centerPoint.y = p4.y+0.5;
+            centerPoint.z = (p1.z+p2.z+p3.z+p4.z)/4;
+            //middlePointTwo.x = (p3.x - p4.x) / 2;
+            //middlePointTwo.z = (p3.z - p4.z) / 2;
+
+            //let centerPoint = p3
+            //centerPoint.x = middlePointOne.x;
+            //centerPoint.y = (middlePointOne.y - middlePointTwo.y) / 2;
+            //centerPoint.z = (middlePointOne.z - middlePointTwo.z) / 2;
+
+            // find the interpolated locations between all points
+            let pointOneTwo = InterpolatePoint(p1, p2, cVal);
+            let pointTwoThree = InterpolatePoint(p2, p3, cVal);
+            let pointThreeFour = InterpolatePoint(p3, p4, cVal);
+            let pointFourOne = InterpolatePoint(p4, p1, cVal);
+
+            if (p1.z >= cVal && centerPoint.z >= cVal) {
+                firstPointSet.push(pointOneTwo)
+                firstPointSet.push(pointTwoThree)
+                secondPointSet.push(pointThreeFour)
+                secondPointSet.push(pointFourOne)
+            } else if (p1.z >= cVal && centerPoint.z < cVal) {
+                firstPointSet.push(pointOneTwo)
+                firstPointSet.push(pointFourOne)
+                secondPointSet.push(pointThreeFour)
+                secondPointSet.push(pointTwoThree)
+            } else if (p1.z < cVal && centerPoint.z >= cVal) {
+                firstPointSet.push(pointOneTwo)
+                firstPointSet.push(pointFourOne)
+                secondPointSet.push(pointThreeFour)
+                secondPointSet.push(pointTwoThree)
+            } else if (p1.z < cVal && centerPoint.z < cVal) {
+                firstPointSet.push(pointOneTwo)
+                firstPointSet.push(pointTwoThree)
+                secondPointSet.push(pointThreeFour)
+                secondPointSet.push(pointFourOne)
+            }
+        }
+        else if (caseType == -2) {
+            // single point case
+            let matchPoint = p1;
+            if (p2.z==cVal) {
+                matchPoint = p2;
+            }
+            else if (p3.z==cVal) {
+                matchPoint = p3;
+            }
+            else if (p4.z == cVal) {
+                matchPoint = p4;
+            }
+            //firstPointSet.push(matchPoint);
+            //firstPointSet.push(matchPoint);
+        }
+        else if (caseType == -3) {
+
+            if (p1.z==cVal) {
+                firstPointSet.push(p1);
+            }
+            if (p2.z==cVal) {
+                firstPointSet.push(p2);
+            }
+            if (p3.z==cVal) {
+                firstPointSet.push(p3);
+            }
+            if (p4.z == cVal) {
+                firstPointSet.push(p4);
+            }
+        }
+        else if (caseType == -4) {
+            if (p1.z==cVal && p3.z==cVal) {
+                firstPointSet.push(p1);
+                firstPointSet.push(p3);
+            }
+            else if (p2.z == cVal && p4.z==cVal) {
+                firstPointSet.push(p2);
+                firstPointSet.push(p4);
+            }
+            else {
+                throw Error;
+            }
+
+        }
+        let temp = [];
+        temp.push(firstPointSet);
+        temp.push(secondPointSet);
+        return temp;
+    }
+
+    function RemovePoint(allPoints, i) {
+
+        let edgeCase = false; // do not remove edge values since move then one line can pass through them
+    /*
+        for (let j = 0; j < allPoints[i].length; j++) {
+            let xDiff = allPoints[i][j].x - (Math.floor(allPoints[i][j].x) * 1.0)
+            let yDiff = allPoints[i][j].y - (Math.floor(allPoints[i][j].y) * 1.0)
+            if (xDiff == 0 && yDiff == 0) {
+                edgeCase = true
+                break
+            }
+        }
+        if (edgeCase) {
+            let a = 0;
+        }
+
+     */
+
+
+        if (!edgeCase) {
+            let temp = []
+            temp = allPoints.slice(0, i)
+            let temp2 = []
+            temp2 = allPoints.slice(i + 1)
+            temp2.forEach(element => temp.push(element));
+            allPoints = temp;
+        }
+        let returnVal = []
+        returnVal.push(allPoints)
+        returnVal.push(!edgeCase)
+        return returnVal; //allPoints;
+    }
+
+    function MergeArrays(arrayOne, arrayTwo, option) {
+        /*
+     * Option 1 - first element in arrayOne matches first element in arrayTwo
+     * Option 2 - second element in arrayOne matches first element in arrayTwo
+     * Option 3 - first element in arrayOne matches last element in arrayTwo
+     * Option 4 - second element in arrayOne matches last element in arrayTwo
+     */
+        let returnVal = [];
+        switch (option) {  //ignore the middle value so that we eliminate duplicates
+            case 1:
+                for (let i = arrayOne.length-1; i >=0; i--) {
+                    returnVal.push(arrayOne[i])
+                }
+                arrayTwo.forEach(element => returnVal.push(element));
+                break;
+            case 2:
+                for (let i = 0; i < arrayOne.length; i++) {
+                    returnVal.push(arrayOne[i]);
+                }
+                for (let i = 0; i < arrayTwo.length; i++) {
+                    returnVal.push(arrayTwo[i]);
+                }
+                //arrayTwo.forEach(element => returnVal.push(element));
+                break;
+            case 3:
+                arrayTwo.forEach(element => returnVal.push(element));
+                //returnVal.push(arrayOne[1])
+
+                for (let i = 0; i < arrayOne.length; i++) {
+                    returnVal.push(arrayOne[i])
+                }
+                break;
+            case 4:
+                arrayTwo.forEach(element => returnVal.push(element));
+                for(let i = arrayOne.length-1; i >=0; i--) {
+                    returnVal.push(arrayOne[i])
+                }
+
+                break;
+            /*
+            case 1:
+                if (arrayOne[1]!=arrayTwo[0]) {
+                    if (arrayOne.length!=2 && arrayOne[0]==arrayOne[1]) {
+                        for (let i = 1; i < arrayOne.length; i++) {
+                            returnVal.push(arrayOne[i])
+                        }
+                    }
+                    arrayTwo.forEach(element => returnVal.push(element));
+
+                }
+                else {
+                    returnVal = arrayTwo
+                }
+                //returnVal.push(arrayOne[0])
+                break;
+            case 2:
+                if (arrayOne[0]!=arrayTwo[0]) {
+                    if (arrayOne.length!=2 && arrayOne[0]==arrayOne[1]) {
+                        for (let i = arrayOne.length - 2; i >= 0; i--) {
+                            returnVal.push(arrayOne[i])
+                        }
+                    }
+                    arrayTwo.forEach(element => returnVal.push(element));
+
+                }
+                else {
+                    returnVal = arrayTwo.copy();
+                }
+                break;
+            case 3:
+                arrayTwo.forEach(element => returnVal.push(element));
+                //returnVal.push(arrayOne[1])
+                if (arrayOne[1]!=arrayTwo[arrayTwo.length-1]) {
+                    for(let i = 1; i < arrayOne.length; i++) {
+                        returnVal.push(arrayOne[i])
+                    }
+                }
+                break;
+            case 4:
+                arrayTwo.forEach(element => returnVal.push(element));
+                //returnVal.push(arrayOne[0])
+                if (arrayOne[0]!=arrayTwo[arrayTwo.length-1]) {
+                    for(let i = arrayOne.length-2; i >=0; i--) {
+                        returnVal.push(arrayOne[i])
+                    }
+                }
+                break;
+
+             */
+        }
+        return returnVal;
+
+    }
+
+    function MergePoints(referencePoints, allPoints) {
+        let returnVal = false;
+        let offsetInt = 0;
+        let refX = Math.round(100*referencePoints[0].x)/100.0;
+        let refY = Math.round(100*referencePoints[0].y)/100.0;
+        let refXL = Math.round(100*referencePoints[referencePoints.length - 1].x)/100.0;
+        let refYL = Math.round(100*referencePoints[referencePoints.length - 1].y)/100.0;
+        let temp = [];
+        let removedPoints = [];
+        let APLEN = allPoints.length;
+        for (let i = 0; i < APLEN; i++) { // check each point to see if it has a matching value for this point
+            if (allPoints[i]!=referencePoints) {
+
+                let APILEN = allPoints[i].length;
+                for (let j = 0; j < APILEN; j++) {
+                    let aPx = Math.round(100*allPoints[i][j].x)/100.0;
+                    let aPy = Math.round(100*allPoints[i][j].y)/100.0;
+                    if (aPx == refX && aPy == refY) {// check first position
+                        let type = 1
+                        if (j != 0) {
+                            type = 2
+                        }
+                        referencePoints = MergeArrays(allPoints[i], referencePoints, type);
+                        returnVal = true;
+                        removedPoints.push(allPoints[i])
+                        let removePoint = RemovePoint(allPoints, i)
+                        let b = removePoint.pop()
+                        allPoints = removePoint.pop()
+                        if (b) {
+                            APLEN = allPoints.length;
+                            i = 0;
+                        }
+                        else {
+                            removedPoints.pop()
+                        }
+                        refX = Math.round(100*referencePoints[0].x)/100.0;
+                        refY = Math.round(100*referencePoints[0].y)/100.0;
+
+                        /*
+                        allPoints = RemovePoint(allPoints, i)
+                        APLEN = allPoints.length;
+                        i=0;
+                        //i = allPoints.length;
+                        refX = Math.round(1000*referencePoints[0].x)/1000.0;
+                        refY = Math.round(1000*referencePoints[0].y)/1000.0;
+                        */
+                        break;
+
+
+                    }
+                    else if (referencePoints.length > 1) {       // check last position
+                        if (aPx == refXL && aPy == refYL) {
+                            // check last position
+                            let type = 3
+                            if (j != 0) {
+                                type = 4
+                            }
+
+                            referencePoints = MergeArrays(allPoints[i], referencePoints, type);
+                            returnVal = true;
+                            removedPoints.push(allPoints[i])
+                            let removePoint = RemovePoint(allPoints, i)
+                            let b = removePoint.pop()
+                            allPoints = removePoint.pop()
+                            if (b) {
+                                APLEN = allPoints.length;
+                                i = 0;
+
+                            }
+                            else {
+                                removedPoints.pop()
+                            }
+                            refXL = Math.round(100*referencePoints[referencePoints.length - 1].x)/100.0;
+                            refYL = Math.round(100*referencePoints[referencePoints.length - 1].y)/100.0;
+
+                            //i = allPoints.length;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        temp.push(removedPoints)
+        temp.push(returnVal);
+        temp.push(referencePoints);
+        temp.push(allPoints);
+        return temp;
+    }
+
+    function PlotLine(lineOfPoints) {
+
+        for (let i in lineOfPoints) {
+            var line = d3.line()
+                .x(function (d, i) {
+                    return xScaleDots(d.x) + (((graph_width - 100) / totalDots))
+                })
+                .y(function (d) {
+                    return yScaleDots(d.y) - margin.bottom - margin.top - ((graph_height - 100) / totalDots)
+                })
+            //.curve(d3.curveMonotoneX)
+
+
+            var ohPath = svg.append("path")
+                .datum(lineOfPoints[i])//.datum(dataset) // 10. Binds data to the line
+                .attr("class", "ohline") // Assign a class for styling
+                .attr("d", line); // 11. Calls the line generator
+
+
+        }
+    }
+
+        function IsLooped(referencePoints) {
+            let xVal = Math.abs(referencePoints[0].x - referencePoints[referencePoints.length - 1].x);
+            let yVal = Math.abs(referencePoints[0].y - referencePoints[referencePoints.length - 1].y);
+            if (xVal + yVal <= 1.5) {
+                referencePoints.push(referencePoints[0]);
+            }
+            /*
+        let zeroX = Math.floor(referencePoints[0].x)
+
+        let zeroY = Math.floor(referencePoints[0].y)
+
+        let lastX = Math.floor(referencePoints[referencePoints.length - 1].x)
+        let lastY = Math.floor(referencePoints[referencePoints.length - 1].y)
+        let refX = Math.round(1000*referencePoints[0].x)/1000.0;
+        let refY = Math.round(1000*referencePoints[0].y)/1000.0;
+        let refXL = Math.round(1000*referencePoints[referencePoints.length - 1].x)/1000.0;
+        let refYL = Math.round(1000*referencePoints[referencePoints.length - 1].y)/1000.0;
+        if ((zeroX == lastX || zeroX+1 == lastX || zeroX-1 == lastX)
+            && (zeroY == lastY || zeroY+1 == lastY || zeroY-1 == lastY)
+            && (refX!=refXL && refY!=refYL) ) {
+            referencePoints.push(referencePoints[0])
+
+        }
+
+         */
+            return referencePoints;
+        }
+
+        function RemoveDuplicates(referencePoints) {
+            let returnVal = [];
+            for (let i = 0; i < referencePoints.length - 1; i++) {
+                if (referencePoints[i].x != referencePoints[i + 1].x &&
+                    referencePoints[i].y != referencePoints[i + 1].y) {
+                    returnVal.push(referencePoints[i]);
+                }
+            }
+            returnVal.push(referencePoints[referencePoints.length-1])
+            return returnVal;
+        }
+
+        function SingleValMarch(marchVal) {
+            let cVal = marchVal
+            let linesArray = [] //array of arrays of arrays of points
+            //first layer is either one for a single line as in case 1 & 3 or multiple for 2 & 4
+            //second layer is arrays of arrays of two points
+            // linesArray = []
+            // linesArray[0] = [ [point1, point2], [point3,point4]....[pointN-1, pointN] ]
+            // in this example linesArray[0] could be the singe line [dual] marching squares
+            let firstPoints = [];
+            let secondPoints = [];
+            //maxDataPoints
+            //globalArrayXYZ;
+            //MarchSquare(p1,p2,p3,p4,cVal)
+            for (let i = totalDots; i < globalArrayXYZ.length-1; i++) {//(totalDots * totalDots) - 1; i++) {
+                if ((i + 1) % (totalDots) != 0) { // skip over edge cases
+                    //maxDataPoints
+                    if (globalArrayXYZ[i].z < 0 || globalArrayXYZ[i + 1].z < 0) {
+                        let a = 0;
+                    }
+                    let p1 = globalArrayXYZ[i]
+                    let p2 = globalArrayXYZ[i + 1]
+                    let p3 = globalArrayXYZ[i - totalDots + 1]
+                    let p4 = globalArrayXYZ[i - totalDots]
+                    if (p1.z < 0) p1.z = 0;
+                    if (p2.z < 0) p2.z = 0;
+                    if (p3.z < 0) p3.z = 0;
+                    if (p4.z < 0) p4.z = 0;
+                    if (p1.y == 0.5 || p1.x == 0.5) {
+                        p1.x = p2.x - 1;
+                        p1.y = p2.y;
+                        globalArrayXYZ[i] = p1
+                    }
+                    if (p2.y == 0.5 || p2.x == 0.5) {
+                        p2.x = p1.x + 1;
+                        p2.y = p1.y;
+                        globalArrayXYZ[i + 1] = p2
+
+                    }
+                    if (p3.y == 0.5 || p3.x == 0.5) {
+                        p3.x = p4.x - 1;
+                        p3.y = p4.y;
+                        globalArrayXYZ[i - totalDots + 1] = p3
+
+                    }
+                    if (p4.y == 0.5 || p4.x == 0.5) {
+                        p4.x = p3.x + 1;
+                        p4.y = p3.y;
+                        globalArrayXYZ[i - totalDots] = p4
+                    }
+                    let temp = MarchSquare(p1, p2, p3, p4, cVal)
+                    secondPoints = temp.pop();
+                    firstPoints = temp.pop();
+
+                    if (firstPoints.length > 0) {
+                        linesArray.push(firstPoints)
+                    }
+                    if (secondPoints.length > 0) {
+                        linesArray.push(secondPoints)
+                    }
+
+                }
+            }
+
+
+            /*
+        *
+        * Time to make some lines out of arrays of arrays of points
+        *
+        */
+            let referencePoints = [];
+            let lineNum = 0;
+            let arrayOfArrays = [];
+            let LALEN = linesArray.length;
+            let startingPoints = [];
+            linesArray.forEach(element => startingPoints.push(element));
+            while (linesArray.length > 0 && lineNum < LALEN) {
+
+                referencePoints = startingPoints[lineNum];
+                removeItem(startingPoints, startingPoints[lineNum])
+                let removePoint = RemovePoint(linesArray, lineNum)
+                let b = removePoint.pop()
+                linesArray = removePoint.pop()
+                LALEN = linesArray.length;
+                //lineNum++;
+                let found = true;
+                let temp = [];
+                let added = false;
+                while (found && linesArray.length > 0 && lineNum < LALEN) {  // need to handle cross intersections, we can share at most one contiguous point
+                    temp = MergePoints(referencePoints, linesArray);
+                    linesArray = temp.pop();
+                    referencePoints = temp.pop();
+                    found = temp.pop();
+                    let removedPoints = temp.pop();
+                    removedPoints.forEach(i => removeItem(startingPoints, i))
+                    referencePoints.forEach(i => removeItem(startingPoints, i))
+                    LALEN = linesArray.length;
+                    if (found) {
+                        added = true;
+                    }
+
+                }
+                if (added) {
+                    referencePoints = RemoveDuplicates(referencePoints);
+                    referencePoints = IsLooped(referencePoints);
+                    arrayOfArrays.push(referencePoints);
+                    //PlotLine(arrayOfArrays)
+                    //break;
+                } else {
+                    lineNum++;
+                }
+            }
+            return arrayOfArrays;
+
+        }
+
+        function ConvertToDualMarch(arrayOfLines) {
+            let returnVal = [];
+            for (let i = 0; i < arrayOfLines.length; i++) {
+                let subReturnVal = [];
+                subReturnVal.push(arrayOfLines[i][0])
+                for (let j = 0; j < arrayOfLines[i].length - 1; j++) {
+                    let Point = {
+                        x: (arrayOfLines[i][j].x + arrayOfLines[i][j + 1].x) / 2,
+                        y: (arrayOfLines[i][j].y + arrayOfLines[i][j + 1].y) / 2,
+                        z: arrayOfLines[i][j].z
+                    }
+                    subReturnVal.push(Point)
+                }
+                subReturnVal.push(arrayOfLines[i][arrayOfLines[i].length-1])
+                subReturnVal = IsLooped(subReturnVal);
+                returnVal.push(subReturnVal);
+            }
+            return returnVal;
+        }
+
+        function PlotContour(whichType) {
+
+            var remove = svg.selectAll("path").remove();
+            PlotAxis();
+            let cVal = 50;
+            let cInt = 10;
+            let a = d3.select("#ContourSingleValue").property("value");
+            let b = d3.select("#ContourMultipleValue").property("value");
+            if (a!="") {
+                let i = Math.floor(a);
+                if (i<=100 && i>=0) {
+                    cVal = i
+                }
+            }
+            if (b!="") {
+                let i = Math.floor(b);
+                if (i<=100 && i>=0) {
+                    cInt = i
+                }
+            }
+            //whichType is an integer
+            // 1 - single line marching squares
+            // 2 - multiple line marching squares
+            // 3 - single line dual marching squares
+            // 4 - multiple lines dual marching squares
+            let linesArray = [] //array of arrays of arrays of points
+            //first layer is either one for a single line as in case 1 & 3 or multiple for 2 & 4
+            //second layer is arrays of arrays of two points
+            // linesArray = []
+            // linesArray[0] = [ [point1, point2], [point3,point4]....[pointN-1, pointN] ]
+            // in this example linesArray[0] could be the singe line [dual] marching squares
+
+            let firstPoints = [];
+            let secondPoints = [];
+            if (whichType == 1) {
+
+                let arrayOfLines = SingleValMarch(cVal);
+                PlotLine(arrayOfLines)
+            } else if (whichType == 2) {
+
+                for (let ii = cInt; ii <= zmax; ii = ii + cInt) {
+                    let arrayOfLines = SingleValMarch(ii);
+                    PlotLine(arrayOfLines)
+                }
+
+            } else if (whichType == 3) {
+
+                let arrayOfLines = SingleValMarch(cVal);
+
+                arrayOfLines = ConvertToDualMarch(arrayOfLines);
+
+                PlotLine(arrayOfLines)
+            } else if (whichType == 4) {
+
+
+                for (let ii = cInt; ii <= zmax; ii = ii + cInt) {
+                    let arrayOfLines = SingleValMarch(ii);
+                    arrayOfLines = ConvertToDualMarch(arrayOfLines);
+                    PlotLine(arrayOfLines)
+                }
+            }
+        }
+
+    function InterpolateColorPoints(colorMin,colorMax,valMin,valMax,val) {
+        return colorMin + ((val - valMin) / (valMax - valMin) * (colorMax - colorMin));
+    }
+
+    function Color(choice, val) {
+        // 1 = veridis
+        let returnVal;
+        normalizeVal = val/zmax;
+        let redArray = [];
+        let greenArray = [];
+        let blueArray = [];
+        let breakPoints = [0.0,0.14,0.29,0.43,0.57,0.71,0.86,1.00];
+        let pointCount = 8;
+        switch(choice) {
+            case 1: // Viridis
+                redArray = [68,70,54,39,31,74,159,253];
+                greenArray = [1,50,93,127,161,194,218,231];
+                blueArray = [84,127,141,142,135,109,58,37];
+                break;
+            case 2: // inferno
+                redArray = [0, 40, 101, 159, 212, 245, 250, 252];
+                greenArray = [0, 11, 21, 42, 72, 125, 193, 255];
+                blueArray = [4, 84, 110, 99, 66, 21, 39, 164];
+                break;
+            case 3: // Extended Kindlmann
+                pointCount = 9;
+                breakPoints = [0.0,0.12,0.25,0.38,0.50,0.62,0.75,0.88,1.00];
+                redArray = [0,18,3,10,125,247,250,229,255];
+                greenArray = [0,5,67,103,123,110,148,212,255];
+                blueArray = [0,111,67,5,6,80,244,253,255];
+                break;
+            case 4: // plasma
+                redArray = [13, 84, 139, 185, 219, 244, 254, 240];
+                greenArray = [8, 2, 10, 50, 92, 136, 188, 249];
+                blueArray = [135, 163, 165, 137, 104, 73, 43, 33];
+                break;
+        }
+        for (let i = 0; i < pointCount-1; i ++) {
+            if (normalizeVal >= breakPoints[i] && normalizeVal <= breakPoints[i + 1]) {
+                returnVal = d3.rgb(
+                    InterpolateColorPoints(redArray[i], redArray[i + 1], breakPoints[i], breakPoints[i + 1], normalizeVal),
+                    InterpolateColorPoints(greenArray[i], greenArray[i + 1], breakPoints[i], breakPoints[i + 1], normalizeVal),
+                    InterpolateColorPoints(blueArray[i], blueArray[i + 1], breakPoints[i], breakPoints[i + 1], normalizeVal)
+                )
+            }
+        }
+            return returnVal;
+    }
+            /*
+        if (choice == 2) {
+
+        }
+        else (choice == 1)
+            if (normalizeVal>=0.0 && normalizeVal<=0.14) {
+                let red = IntepolateColorPoints(0,40,0.0,0.14,normalizeVal);
+                let green = IntepolateColorPoints(0,11,0.0,0.14,normalizeVal);
+                let blue = IntepolateColorPoints(4,84,0.0,0.14, normalizeVal);
+                returnVal = d3.rgb(red,green,blue);
+            }
+            else if(normalizeVal>0.14 && normalizeVal<=0.29) {
+                let red = IntepolateColorPoints(40,101,0.14,0.29,normalizeVal);
+                let green = IntepolateColorPoints(11,21,0.14,0.29,normalizeVal);
+                let blue = IntepolateColorPoints(84,110,0.14,0.29, normalizeVal);
+                returnVal = d3.rgb(red,green,blue);
+            }
+            else if(normalizeVal>0.29 && normalizeVal<=0.43) {
+                let red = IntepolateColorPoints(101,159,0.29,0.43,normalizeVal);
+                let green = IntepolateColorPoints(21,42,0.29,0.43,normalizeVal);
+                let blue = IntepolateColorPoints(110,99,0.29,0.43, normalizeVal);
+                returnVal = d3.rgb(red,green,blue);
+            }
+            else if(normalizeVal>0.43 && normalizeVal<=0.57) {
+                let red = IntepolateColorPoints(159,212,0.43,0.57,normalizeVal);
+                let green = IntepolateColorPoints(31,72,0.43,0.57,normalizeVal);
+                let blue = IntepolateColorPoints(99,66,0.43,0.57,normalizeVal);
+                returnVal = d3.rgb(red,green,blue);
+            }
+            else if(normalizeVal>0.57 && normalizeVal<=0.71) {
+                let red = IntepolateColorPoints(212,245,0.57,0.71,normalizeVal);
+                let green = IntepolateColorPoints(72,125,0.57,0.71,normalizeVal);
+                let blue = IntepolateColorPoints(66,21,0.57,0.71,normalizeVal);
+                returnVal = d3.rgb(red,green,blue);
+            }
+            else if(normalizeVal>0.71 && normalizeVal<=0.86) {
+                let red = IntepolateColorPoints(245,250,0.71,0.86,normalizeVal);
+                let green = IntepolateColorPoints(125,193,0.71,0.86,normalizeVal);
+                let blue = IntepolateColorPoints(21,39,0.71,0.86,normalizeVal);
+                returnVal = d3.rgb(red,green,blue);
+            }
+            else if(normalizeVal>0.86 && normalizeVal<=1.00) {
+                let red = IntepolateColorPoints(250,252,0.86,1.00,normalizeVal);
+                let green = IntepolateColorPoints(193,255,0.86,1.00,normalizeVal);
+                let blue = IntepolateColorPoints(39,164,0.86,1.00,normalizeVal);
+                returnVal = d3.rgb(red,green,blue);
+            }
+        }
+        else if (choice == 1) {
+            if (normalizeVal>=0.0 && normalizeVal<=0.14) {
+                let red = IntepolateColorPoints(68,70,0.0,0.14,normalizeVal);
+                let green = IntepolateColorPoints(1,50,0.0,0.14,normalizeVal);
+                let blue = IntepolateColorPoints(84,127,0.0,0.14, normalizeVal);
+                returnVal = d3.rgb(red,green,blue);
+            }
+            else if(normalizeVal>0.14 && normalizeVal<=0.29) {
+                let red = IntepolateColorPoints(70,54,0.14,0.29,normalizeVal);
+                let green = IntepolateColorPoints(50,92,0.14,0.29,normalizeVal);
+                let blue = IntepolateColorPoints(127,141,0.14,0.29, normalizeVal);
+                returnVal = d3.rgb(red,green,blue);
+            }
+            else if(normalizeVal>0.29 && normalizeVal<=0.43) {
+                let red = IntepolateColorPoints(54,39,0.29,0.43,normalizeVal);
+                let green = IntepolateColorPoints(92,127,0.29,0.43,normalizeVal);
+                let blue = IntepolateColorPoints(141,142,0.29,0.43, normalizeVal);
+                returnVal = d3.rgb(red,green,blue);
+            }
+            else if(normalizeVal>0.43 && normalizeVal<=0.57) {
+                let red = IntepolateColorPoints(39,31,0.43,0.57,normalizeVal);
+                let green = IntepolateColorPoints(127,161,0.43,0.57,normalizeVal);
+                let blue = IntepolateColorPoints(142,135,0.43,0.57,normalizeVal);
+                returnVal = d3.rgb(red,green,blue);
+            }
+            else if(normalizeVal>0.57 && normalizeVal<=0.71) {
+                let red = IntepolateColorPoints(31,74,0.57,0.71,normalizeVal);
+                let green = IntepolateColorPoints(161,194,0.57,0.71,normalizeVal);
+                let blue = IntepolateColorPoints(135,109,0.57,0.71,normalizeVal);
+                returnVal = d3.rgb(red,green,blue);
+            }
+            else if(normalizeVal>0.71 && normalizeVal<=0.86) {
+                let red = IntepolateColorPoints(74,159,0.71,0.86,normalizeVal);
+                let green = IntepolateColorPoints(194,218,0.71,0.86,normalizeVal);
+                let blue = IntepolateColorPoints(109,58,0.71,0.86,normalizeVal);
+                returnVal = d3.rgb(red,green,blue);
+            }
+            else if(normalizeVal>0.86 && normalizeVal<=1.00) {
+                let red = IntepolateColorPoints(159,253,0.86,1.00,normalizeVal);
+                let green = IntepolateColorPoints(218,231,0.86,1.00,normalizeVal);
+                let blue = IntepolateColorPoints(58,37,0.86,1.00,normalizeVal);
+                returnVal = d3.rgb(red,green,blue);
+            }
+
+        }
+        else if (choice == 3) {
+            if (normalizeVal>=0.0 && normalizeVal<=0.14) {
+                let red = IntepolateColorPoints(68,70,0.0,0.14,normalizeVal);
+                let green = IntepolateColorPoints(1,50,0.0,0.14,normalizeVal);
+                let blue = IntepolateColorPoints(84,127,0.0,0.14, normalizeVal);
+                returnVal = d3.rgb(red,green,blue);
+            }
+            else if(normalizeVal>0.14 && normalizeVal<=0.29) {
+                let red = IntepolateColorPoints(70,54,0.14,0.29,normalizeVal);
+                let green = IntepolateColorPoints(50,92,0.14,0.29,normalizeVal);
+                let blue = IntepolateColorPoints(127,141,0.14,0.29, normalizeVal);
+                returnVal = d3.rgb(red,green,blue);
+            }
+            else if(normalizeVal>0.29 && normalizeVal<=0.43) {
+                let red = IntepolateColorPoints(54,39,0.29,0.43,normalizeVal);
+                let green = IntepolateColorPoints(92,127,0.29,0.43,normalizeVal);
+                let blue = IntepolateColorPoints(141,142,0.29,0.43, normalizeVal);
+                returnVal = d3.rgb(red,green,blue);
+            }
+            else if(normalizeVal>0.43 && normalizeVal<=0.57) {
+                let red = IntepolateColorPoints(39,247,0.43,0.57,normalizeVal);
+                let green = IntepolateColorPoints(127,161,0.43,0.57,normalizeVal);
+                let blue = IntepolateColorPoints(142,135,0.43,0.57,normalizeVal);
+                returnVal = d3.rgb(red,green,blue);
+            }
+            else if(normalizeVal>0.57 && normalizeVal<=0.71) {
+                let red = IntepolateColorPoints(247,250,0.57,0.71,normalizeVal);
+                let green = IntepolateColorPoints(161,194,0.57,0.71,normalizeVal);
+                let blue = IntepolateColorPoints(135,109,0.57,0.71,normalizeVal);
+                returnVal = d3.rgb(red,green,blue);
+            }
+            else if(normalizeVal>0.71 && normalizeVal<=0.86) {
+                let red = IntepolateColorPoints(250,229,0.71,0.86,normalizeVal);
+                let green = IntepolateColorPoints(194,218,0.71,0.86,normalizeVal);
+                let blue = IntepolateColorPoints(109,58,0.71,0.86,normalizeVal);
+                returnVal = d3.rgb(red,green,blue);
+            }
+            else if(normalizeVal>0.86 && normalizeVal<=1.00) {
+                let red = IntepolateColorPoints(229,255,0.86,1.00,normalizeVal);
+                let green = IntepolateColorPoints(218,231,0.86,1.00,normalizeVal);
+                let blue = IntepolateColorPoints(58,37,0.86,1.00,normalizeVal);
+                returnVal = d3.rgb(red,green,blue);
+            }
+
+        }
+        return returnVal;
+    }
+
+             */
+
+    function AddColor(colorInt) {
+        var remove = svg.selectAll("circles").remove();
+        //PlotAxis();
+
+
+        let tempData = [];
+        globalArrayXYZ.forEach(i => tempData.push(i))
+        var remove = svg.selectAll("circle").remove();
+        remove = svg.selectAll("text").remove();
+        PlotAxis();
+
+
+        var circle = svg.selectAll("circle")
+            .data(tempData)//dataset)//dataset)
+            .enter().append("circle") // Uses the enter().append() method
+            .attr("class", "dotcircle") // Assign a class for styling
+            .attr("cx", function (d) {
+                return xScaleDots(d.x) + (((graph_width - 100) / totalDots))
+            })//xScale(i) })
+            .attr("cy", function (d) {
+                return yScaleDots(d.y) - margin.bottom - margin.top - ((graph_height - 100) / totalDots)
+            }) //yScale(d.y) })
+            .attr("r", zmax/(8/(20/totalDots))
+            )
+            .style("fill",function(d) {return Color(colorInt,d.z)})
+
+        /*
+        var textDots = svg.selectAll("text")
+            .data(globalArrayXYZ)
+            .enter()
+            .append("text")
+            .text(function (d) {
+                return d.z
+            })
+            .attr("class", "scene2_annotation_box2")
+            .attr("x", function (d) {
+                return 4 + xScale(d.x) + (((graph_width - 100) / 20))
+            })//xScale(i) })
+            .attr("y", function (d) {
+                return 4+yScale(d.y) - margin.bottom - margin.top - ((graph_height - 100) / 20)
+            })
+            .attr("dy", "1em");
+
+         */
+
+}
+
+    function ChangePoints(adjustmentInt) {
+        //add points
+        let rowValue = totalDots;
+        let newRowValue = totalDots+(totalDots-1);
+        //totalDots = newRowValue;
+        let newArrayXYZ = [newRowValue*newRowValue]
+        let z = 0.0;
+        if (adjustmentInt==1) {
+            //let oldMax = totalDots;
+            for (let outer = 0; outer < newRowValue; outer++) {
+                for (let inner = 0; inner < newRowValue; inner++) {
+                    z = 0.0;
+                    //handle special cases, row's = 0 or end; columns = 0 or end;
+                    let row = 0;
+                    let col = 0;
+                    let rFound = true;
+                    let cFound = true;
+                    if (outer == 0) {
+                        row = 0;
+                    } else if (outer == newRowValue - 1) {
+                        row = rowValue - 1;
+                    } else if (outer % 2 == 0) {
+                        row = outer / 2;
+                    } else {
+                        row = Math.floor(outer / 2);
+                        rFound = false;
+                    }
+
+                    if (inner == 0) {
+                        col = 0;
+                    } else if (inner == newRowValue - 1) {
+                        col = rowValue - 1;
+                    } else if (inner % 2 == 0) {
+                        col = inner / 2;
+                    } else {
+                        col = Math.floor(inner / 2);
+                        cFound = false;
+                    }
+
+                    if (rFound) {
+                        if (cFound) {
+                            z = globalArrayXYZ[row * rowValue + col].z;
+                        } else {
+                            let tempVals = []
+
+                            if (col >= 0 && col < globalArrayXYZ.length) {
+                                tempVals.push(globalArrayXYZ[row * rowValue + col].z)
+                            }
+
+                            if ((col + 1) >= 0 && (col + 1) < globalArrayXYZ.length) {
+                                tempVals.push(globalArrayXYZ[row * rowValue + col + 1].z)
+                            }
+
+                            z = Math.round(GetCloseValue(tempVals, variance, zmax));
+                        }
+                    } else {
+
+                        if (cFound) {
+                            let tempVals = []
+
+                            if (row >= 0 && row < globalArrayXYZ.length) {
+                                tempVals.push(globalArrayXYZ[row * rowValue + col].z)
+                            }
+                            if ((row + 1) >= 0 && (row + 1) < globalArrayXYZ.length) {
+                                tempVals.push(globalArrayXYZ[(row + 1) * rowValue + col].z)
+                            }
+
+                            z = Math.round(GetCloseValue(tempVals, variance, zmax));
+                        }
+                        /*
+                        // else only do this loop after we do literally all others
+                        else {
+                            let tempVals = [];
+                            if (col>=0 && col<globalArrayXYZ.length) {
+                                tempVals.push(globalArrayXYZ[row*rowValue+col])
+                            }
+
+                            if ((col+1)>=0 && (col+1)<globalArrayXYZ.length) {
+                                tempVals.push(globalArrayXYZ[row*rowValue+col+1])
+                            }
+//fix below.
+                            if (row>=0 && row<globalArrayXYZ.length) {
+                                tempVals.push(globalArrayXYZ[(row*rowValue+col)])
+                            }
+                            if ((row+1)>=0 && (row+1)<globalArrayXYZ.length) {
+                                tempVals.push(globalArrayXYZ[(row+1)*totalDots+Math.floor(inner/2)+1])
+                            }
+
+                            z = Math.round(GetCloseValue(tempVals, variance, zmax));
+                        }
+
+                         */
+
+                    }
+
+                    let tempTotal = inner + outer*newRowValue;
+                    newArrayXYZ[tempTotal] = {x: inner, y: outer, z: z}
+                }
+            }
+
+            for (let outer = 1; outer < newRowValue; outer = outer + 2) {
+                for (let inner = 1; inner < newRowValue; inner = inner + 2) {
+                    let tempVals = [];
+                    tempVals.push(newArrayXYZ[outer * newRowValue + inner-1].z)
+                    tempVals.push(newArrayXYZ[outer * newRowValue + inner+1].z)
+                    tempVals.push(newArrayXYZ[(1+outer) * newRowValue + inner].z)
+                    tempVals.push(newArrayXYZ[(outer-1) * newRowValue + inner].z)
+
+                    z = Math.round(GetCloseValue(tempVals, variance, zmax));
+                    let tempTotal = inner + (outer * newRowValue);
+                    newArrayXYZ[tempTotal] = {x: inner, y: outer, z: z}
+                }
+            }
+
+        }
+        else if(adjustmentInt == 2)
+        {
+            newArrayXYZ = [];
+            let newCount = totalDots -2;
+            if (newCount>1) {
+                let i = 0;
+                let j = 0;
+                newCount = Math.floor(newCount/2)+2;
+                newRowValue = newCount;
+                for(let outer = 0; outer < totalDots; outer++) {
+                    if (outer==0 || outer==(totalDots-1) || outer%2==0){
+                        for(let inner = 0; inner<totalDots; inner++) {
+                            if (inner==0 || inner==(totalDots-1) || inner%2==0) {
+                                newArrayXYZ.push({
+                                    x:i,
+                                    y:j,
+                                    z:globalArrayXYZ[outer*totalDots+inner].z
+                                    })
+                                i = i + 1;
+                                if (i==newCount) {
+                                    j = j + 1
+                                    i = 0;
+                                }
+
+
+                            }
+                        }
+                    }
+
+                }
+            }
+
+        }
+        if (newArrayXYZ.length!=0) {
+            //globalArrayXYZ = [newRowValue*newRowValue];
+            globalArrayXYZ = []
+            newArrayXYZ.forEach(i => globalArrayXYZ.push(i));
+            totalDots = newRowValue;
+        }
+
+
+
+
+        xScaleDots = d3.scaleLinear()
+            .domain([xmin, totalDots])
+            .range([0, graph_width - 100]);
+        yScaleDots = d3.scaleLinear()
+            .domain([totalDots, ymin])
+            .range([100, graph_height]);
+        var remove = svg.selectAll("path").remove();
+        PlotDots();
+
+    }
+
+
+</script>
+
